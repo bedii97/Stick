@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ public class BottomDialog extends BottomSheetDialogFragment{
 
     public interface BottomDialogListener{
         void onAddItemClick(String text);
+        void onDialogClose();
     }
 
     public static BottomDialog newInstance() {
@@ -48,6 +51,16 @@ public class BottomDialog extends BottomSheetDialogFragment{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        Window window = getDialog().getWindow();
+        WindowManager.LayoutParams windowParams = window.getAttributes();
+        windowParams.dimAmount = 0f;
+        windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(windowParams);
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof BottomDialogListener) {
@@ -61,6 +74,7 @@ public class BottomDialog extends BottomSheetDialogFragment{
     @Override
     public void onDetach() {
         super.onDetach();
+        mListener.onDialogClose();
         mListener = null;
     }
 }

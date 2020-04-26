@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
 
     EditText editText;
     Button button;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +52,13 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
+                fab.setVisibility(View.INVISIBLE);
                 showBottomSheet();
             }
         });
@@ -91,5 +94,10 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
     @Override
     public void onAddItemClick(String text) {
         Toast.makeText(this, "Text: " + text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDialogClose() {
+        fab.setVisibility(View.VISIBLE);
     }
 }
