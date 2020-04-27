@@ -24,7 +24,6 @@
     </style>
 
 
-
     <!-- Dark Theme -->
     <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
 
@@ -53,7 +52,7 @@
         <item name="android:textSize">48sp</item>
         <item name="android:textColor">?attr/primaryTextColor</item>
     </style>
-    
+
     <style name="bottomDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
@@ -63,5 +62,14 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="AppThemeDark.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppThemeDark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppThemeDark.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

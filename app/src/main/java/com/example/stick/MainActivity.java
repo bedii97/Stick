@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements BottomDialog.BottomDialogListener {
+public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
 
     @Override
@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                fab.setVisibility(View.INVISIBLE);
-                showBottomSheet();
+                openNoteDetailActivity();
             }
         });
 
@@ -82,9 +81,9 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
 
     }
 
-    public void showBottomSheet() {
-        BottomDialog bottomDialog = BottomDialog.newInstance();
-        bottomDialog.show(getSupportFragmentManager(), BottomDialog.TAG);
+    private void openNoteDetailActivity() {
+        Intent intent = new Intent(this, NoteDetailActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -111,15 +110,5 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onAddItemClick(String text) {
-        Toast.makeText(this, "Text: " + text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDialogClose() {
-        fab.setVisibility(View.VISIBLE);
     }
 }

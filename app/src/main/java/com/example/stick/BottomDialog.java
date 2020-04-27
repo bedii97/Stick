@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -33,6 +34,7 @@ public class BottomDialog extends BottomSheetDialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.bottomDialogStyle);
         return inflater.inflate(R.layout.bottom_dialog, container, false);
     }
 
@@ -54,9 +56,10 @@ public class BottomDialog extends BottomSheetDialogFragment{
     @Override
     public void onStart() {
         super.onStart();
+        //Disable Dialog Dimming
         Window window = getDialog().getWindow();
         WindowManager.LayoutParams windowParams = window.getAttributes();
-        windowParams.dimAmount = 0f;
+        windowParams.dimAmount = 0f; //Dimming Rate 0.90f
         windowParams.flags |= WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         window.setAttributes(windowParams);
     }
