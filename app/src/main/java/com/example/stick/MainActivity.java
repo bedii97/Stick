@@ -1,13 +1,20 @@
 package com.example.stick;
 
+import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.Layout;
@@ -16,41 +23,28 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomDialog.BottomDialogListener {
-
-    EditText editText;
-    Button button;
     FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppThemeDark);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        editText = findViewById(R.id.editText);
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = editText.getText().toString();
-                String[] lines;
-                String delimiter = "\n";
-                lines = text.split(delimiter);
-                String body = "";
-                for (int i = 0; i < editText.getLineCount(); i++){
-                    body+="Item: " + i + " Text: " + lines[i] + "\n";
-                }
-                Toast.makeText(MainActivity.this, body, Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.groundColorDark));
+        }
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +56,30 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
                 showBottomSheet();
             }
         });
+
+
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbarLayout.setTitle("Stick");
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbarLayout.setTitle("Stick");
+                    isShow = false;
+                }
+            }
+        });
+
+
     }
 
     public void showBottomSheet() {
@@ -86,6 +104,10 @@ public class MainActivity extends AppCompatActivity implements BottomDialog.Bott
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        else if (id == R.id.action_libraries){
+            startActivity(new Intent(this, OssLicensesMenuActivity.class));
+            OssLicensesMenuActivity.setActivityTitle(getString(R.string.action_libraries));
         }
 
         return super.onOptionsItemSelected(item);

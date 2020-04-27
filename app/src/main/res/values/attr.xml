@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="appBArTheme" format="reference"/>
+    <attr name="toolbarPopupTheme" format="reference"/>
+
+    <attr name="collapsedTitleTextColor" format="reference"/>
+
+    <attr name="groundColor" format="reference"/>
+
+    <attr name="primaryTextColor" format="reference"/>
+    <attr name="secondaryTextColor" format="reference"/>
+    <attr name="thirdTextColor" format="reference"/>
+
+    <attr name="primaryButtonColor" format="reference"/>
+
+</resources>

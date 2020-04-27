@@ -1,12 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Stick</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="action_libraries">Open Source Libraries</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="appbar_title">Notes</string>
+
+    <string name="no_item_include_text">No items yet</string>
+
+    <string name="menu_dark_theme">Dark Theme</string>
+
+    <string name="add_note_edit_text_hint">Add Note</string>
+
 </resources>

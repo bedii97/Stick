@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/groundColor"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:text="Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Morbi blandit
+        aliquam urna sit amet cursus. Proin nec tempor
+        mauris, quis vestibulum urna. Curabitur ac diam
+        eu justo posuere viverra. Cras tincidunt finibus
+        elit non feugiat. Nullam placerat convallis ex,
+        in tempus nisl dictum id. Nulla imperdiet bibendum
+        tincidunt. Praesent sed dignissim arcu, faucibus
+        cursus tortor. Nam id sagittis enim. Aliquam blandit
+        augue vel ante accumsan accumsan at sed eros. Duis
+        facilisis ante eget arcu iaculis feugiat. Aenean
+        lacus arcu, efficitur vel elit et, hendrerit vehicula
+        psum. Donec id elit nec quam aliquam mollis. Phasellus
+        eget auctor lectus, sit amet aliquet lorem. Aenean
+        volutpat tellus quis congue egestas. Sed maximus ac
+        nibh eget consequat. Suspendisse feugiat purus aliquam,
+         tincidunt leo at, porttitor arcu.
+         Vivamus laoreet aliquet purus ut placerat.
+         Sed ullamcorper sagittis lorem ut cursus. Sed
+         laoreet, enim nec porttitor mollis, nibh ante
+         suscipit diam, ac tincidunt mi nulla ut tortor.
+          Praesent consectetur luctus nisi nec hendrerit.
+          Aliquam erat volutpat. Aliquam pretium nulla vitae
+          facilisis mattis. Cras egestas lorem ac fermentum
+          volutpat. Pellentesque ac auctor ipsum. Nam nulla
+           sem, elementum sed cursus eget, venenatis sed nisl.
+           Suspendisse dolor lectus, pulvinar vel mi id, cursus
+           malesuada ipsum. Phasellus id nibh lectus. Nullam
+            tellus. Nulla dictum elit at orci tristique rutrum.
+            Aenean euismod diam nibh, a dignissim dui iaculis in.
+Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit. Morbi blandit
+        aliquam urna sit amet cursus. Proin nec tempor
+        mauris, quis vestibulum urna. Curabitur ac diam
+        eu justo posuere viverra. Cras tincidunt finibus
+        elit non feugiat. Nullam placerat convallis ex,
+        in tempus nisl dictum id. Nulla imperdiet bibendum
+        tincidunt. Praesent sed dignissim arcu, faucibus
+        cursus tortor. Nam id sagittis enim. Aliquam blandit
+        augue vel ante accumsan accumsan at sed eros. Duis
+        facilisis ante eget arcu iaculis feugiat. Aenean
+        lacus arcu, efficitur vel elit et, hendrerit vehicula
+        psum. Donec id elit nec quam aliquam mollis. Phasellus
+        eget auctor lectus, sit amet aliquet lorem. Aenean
+        volutpat tellus quis congue egestas. Sed maximus ac
+        nibh eget consequat. Suspendisse feugiat purus aliquam,
+         tincidunt leo at, porttitor arcu.
+         Vivamus laoreet aliquet purus ut placerat.
+         Sed ullamcorper sagittis lorem ut cursus. Sed
+         laoreet, enim nec porttitor mollis, nibh ante
+         suscipit diam, ac tincidunt mi nulla ut tortor.
+          Praesent consectetur luctus nisi nec hendrerit.
+          Aliquam erat volutpat. Aliquam pretium nulla vitae
+          facilisis mattis. Cras egestas lorem ac fermentum
+          volutpat. Pellentesque ac auctor ipsum. Nam nulla
+           sem, elementum sed cursus eget, venenatis sed nisl.
+           Suspendisse dolor lectus, pulvinar vel mi id, cursus
+           malesuada ipsum. Phasellus id nibh lectus. Nullam
+            tellus. Nulla dictum elit at orci tristique rutrum.
+            Aenean euismod diam nibh, a dignissim dui iaculis in."/>
+
+</androidx.core.widget.NestedScrollView>

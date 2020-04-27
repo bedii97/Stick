@@ -1,20 +1,67 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Light Theme -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:statusBarColor">@color/groundColorLight</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="appBArTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+
+        <item name="groundColor">@color/groundColorLight</item>
+
+        <!--Text Colors (Light)-->
+        <item name="primaryTextColor">@color/primaryTextColorLight</item>
+        <item name="secondaryTextColor">@color/secondaryTextColorLight</item>
+        <item name="thirdTextColor">@color/thirdTextColorLight</item>
+
+        <item name="primaryButtonColor">@color/primaryButtonColorLight</item>
+
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
+
+    <!-- Dark Theme -->
+    <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:statusBarColor">@color/groundColorDark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="appBArTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+
+        <item name="groundColor">@color/groundColorDark</item>
+
+        <!--Text Colors (Dark)-->
+        <item name="primaryTextColor">@color/primaryTextColorDark</item>
+        <item name="secondaryTextColor">@color/secondaryTextColorDark</item>
+        <item name="thirdTextColor">@color/thirdTextColorDark</item>
+
+        <item name="primaryButtonColor">@color/primaryButtonColorDark</item>
+
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="collapseTextAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">?attr/primaryTextColor</item>
+    </style>
+    
+    <style name="bottomDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
 </resources>

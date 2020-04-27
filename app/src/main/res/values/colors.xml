@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorPrimary">#1565C0</color>
+    <color name="colorPrimaryDark">#0D47A1</color>
+    <color name="colorAccent">#1565C0</color>
+
+
+    <!--LIGHT MODE COLORS-->
+
+    <!--Ground Colors (Light)-->
+    <color name="groundColorLight">#FFFFFF</color>
+    <color name="cardViewColorLight">#FFFFFF</color>
+
+    <!--Text Colors (Light)-->
+    <color name="primaryTextColorLight">#D9000000</color>
+    <color name="secondaryTextColorLight">#99000000</color>
+    <color name="thirdTextColorLight">#66000000</color>
+
+    <color name="primaryButtonColorLight">#1565C0</color>
+
+
+    <!--DARK MODE COLORS-->
+
+    <!--Ground Colors (Dark)-->
+    <color name="groundColorDark">#121212</color>
+    <color name="cardViewColorDark">#191919</color>
+
+    <!--Text Colors (Dark)-->
+    <color name="primaryTextColorDark">#D9FFFFFF</color>
+    <color name="secondaryTextColorDark">#99FFFFFF</color>
+    <color name="thirdTextColorDark">#66FFFFFF</color>
+
+    <color name="primaryButtonColorDark">#2196F3</color>
+
+
 </resources>

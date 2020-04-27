@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,7 +40,7 @@ public class BottomDialog extends BottomSheetDialogFragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final EditText editText = view.findViewById(R.id.bottom_dialog_et);
-        Button button = view.findViewById(R.id.bottom_dialog_btn);
+        ImageButton button = view.findViewById(R.id.bottom_dialog_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

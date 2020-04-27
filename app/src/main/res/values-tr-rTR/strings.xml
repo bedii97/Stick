@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Stick</string>
+    <string name="action_settings">Ayarlar</string>
+    <string name="action_libraries">Açık Kaynak Kütüphaneler</string>
+
+    <string name="appbar_title">Notlar</string>
+
+    <string name="no_item_include_text">Henüz bir öğe yok</string>
+
+    <string name="menu_dark_theme">Koyu Tema</string>
+
+    <string name="add_note_edit_text_hint">Not Ekle</string>
+
+</resources>
