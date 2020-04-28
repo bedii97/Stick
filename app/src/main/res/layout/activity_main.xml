@@ -29,8 +29,6 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="?attr/toolbarPopupTheme">
 
-
-
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -39,14 +37,24 @@
 
     <include layout="@layout/scroll_deneme" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/activity_main_dialog_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|start"
+        android:text="open"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="?attr/primaryButtonColor"
-        app:tint="@android:color/white"
-        app:srcCompat="@drawable/ic_add_icon_24dp" />
+        android:text="@string/add_note_list_text"
+        android:textColor="@android:color/white"
+        app:icon="@drawable/ic_add_note_list_icon_24dp"
+        app:iconTint="@android:color/white"
+        app:backgroundTint="?attr/primaryButtonColor" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

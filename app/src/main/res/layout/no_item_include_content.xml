@@ -20,14 +20,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@android:color/transparent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/no_event_include_image_view"
-            android:layout_width="match_parent"
-            android:layout_height="96dp"
-            android:contentDescription="@null"
-            android:tint="@color/thirdTextColorLight"
-            android:src="@drawable/ic_no_item_icon_24dp" />
-
         <TextView
             android:id="@+id/no_event_include_text_view"
             android:layout_width="match_parent"
@@ -35,7 +27,7 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:text="@string/no_item_include_text"
-            android:textColor="@color/thirdTextColorLight"
+            android:textColor="?attr/thirdTextColor"
             android:textSize="18sp" />
 
     </LinearLayout>

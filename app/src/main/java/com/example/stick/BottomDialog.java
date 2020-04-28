@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -34,7 +33,6 @@ public class BottomDialog extends BottomSheetDialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.bottomDialogStyle);
         return inflater.inflate(R.layout.bottom_dialog, container, false);
     }
 

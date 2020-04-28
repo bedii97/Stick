@@ -8,6 +8,8 @@
 
     <!--LIGHT MODE COLORS-->
 
+    <color name="activityNoteDetailsToolbarColorLight">#FFFFFF</color>
+
     <!--Ground Colors (Light)-->
     <color name="groundColorLight">#FFFFFF</color>
     <color name="cardViewColorLight">#FFFFFF</color>
@@ -18,9 +20,12 @@
     <color name="thirdTextColorLight">#66000000</color>
 
     <color name="primaryButtonColorLight">#1565C0</color>
+    <color name="secondaryButtonColorLight">#000000</color>
 
 
     <!--DARK MODE COLORS-->
+
+    <color name="activityNoteDetailsToolbarColorDark">#1A1565C0</color>
 
     <!--Ground Colors (Dark)-->
     <color name="groundColorDark">#121212</color>
@@ -32,6 +37,7 @@
     <color name="thirdTextColorDark">#66FFFFFF</color>
 
     <color name="primaryButtonColorDark">#2196F3</color>
+    <color name="secondaryButtonColorDark">#FFFFFF</color>
 
 
 </resources>

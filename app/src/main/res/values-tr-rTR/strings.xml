@@ -5,11 +5,17 @@
     <string name="action_settings">Ayarlar</string>
     <string name="action_libraries">Açık Kaynak Kütüphaneler</string>
 
-    <string name="appbar_title">Notlar</string>
+    <string name="activity_note_details_label">Not Adı</string>
+    <string name="activity_note_details_action_delete">Notu Sil</string>
+    <string name="activity_note_details_action_edit">Notu Düzenle</string>
 
     <string name="no_item_include_text">Henüz bir öğe yok</string>
 
     <string name="menu_dark_theme">Koyu Tema</string>
+
+    <string name="add_note_list_text">Not Ekle</string>
+
+    <string name="title_activity_note_detail">NoteDetailActivity</string>
 
     <string name="add_note_edit_text_hint">Not Ekle</string>
 

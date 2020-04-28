@@ -8,11 +8,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeDark">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".NoteDetailActivity"
-            android:label="@string/title_activity_note_detail"
-            android:theme="@style/AppThemeDark.NoActionBar"></activity>
+            android:label="@string/activity_note_details_label"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

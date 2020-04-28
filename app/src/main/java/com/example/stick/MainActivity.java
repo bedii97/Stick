@@ -1,61 +1,44 @@
 package com.example.stick;
 
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.fragment.app.FragmentManager;
 
-import android.text.Layout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
-    FloatingActionButton fab;
+
+    ExtendedFloatingActionButton fab;
+    Button dialogBTN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppThemeDark);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_logo_24dp);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.groundColorDark));
         }
-
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                openNoteDetailActivity();
-            }
-        });
-
 
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
@@ -78,7 +61,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                openNoteDetailActivity();
+            }
+        });
 
+        dialogBTN = (Button) findViewById(R.id.activity_main_dialog_button);
+        dialogBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNoteDialog();
+            }
+        });
+
+    }
+
+    private void createNoteDialog() {
+        CreateNoteDialog dialog = new CreateNoteDialog();
+        dialog.show(getSupportFragmentManager(), "");
     }
 
     private void openNoteDetailActivity() {
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.activity_main_menu, menu);
         return true;
     }
 
@@ -101,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_theme) {
             return true;
         }
         else if (id == R.id.action_libraries){
@@ -111,4 +116,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

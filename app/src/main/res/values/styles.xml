@@ -3,16 +3,20 @@
     <!-- Light Theme -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#1565C0</item>
+        <item name="colorPrimaryDark">#0D47A1</item>
+        <item name="colorAccent">#1565C0</item>
 
         <item name="android:statusBarColor">@color/groundColorLight</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="appBArTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        <item name="appBarTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
         <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        <item name="actionOverflowButtonStyle">@style/OptionButtonTheme</item>
+
+        <item name="activityNoteDetailsToolbarColor">@color/activityNoteDetailsToolbarColorLight</item>
 
         <item name="groundColor">@color/groundColorLight</item>
+        <item name="cardColor">@color/cardViewColorLight</item>
 
         <!--Text Colors (Light)-->
         <item name="primaryTextColor">@color/primaryTextColorLight</item>
@@ -20,23 +24,29 @@
         <item name="thirdTextColor">@color/thirdTextColorLight</item>
 
         <item name="primaryButtonColor">@color/primaryButtonColorLight</item>
+        <item name="secondaryButtonColor">@color/secondaryButtonColorLight</item>
 
     </style>
+
 
 
     <!-- Dark Theme -->
     <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
 
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1565C0</item>
+        <item name="colorAccent">#2196F3</item>
 
         <item name="android:statusBarColor">@color/groundColorDark</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="appBArTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="appBarTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="actionOverflowButtonStyle">@style/OptionButtonTheme</item>
+
+        <item name="activityNoteDetailsToolbarColor">@color/activityNoteDetailsToolbarColorDark</item>
 
         <item name="groundColor">@color/groundColorDark</item>
+        <item name="cardColor">@color/cardViewColorDark</item>
 
         <!--Text Colors (Dark)-->
         <item name="primaryTextColor">@color/primaryTextColorDark</item>
@@ -44,6 +54,7 @@
         <item name="thirdTextColor">@color/thirdTextColorDark</item>
 
         <item name="primaryButtonColor">@color/primaryButtonColorDark</item>
+        <item name="secondaryButtonColor">@color/secondaryButtonColorDark</item>
 
     </style>
 
@@ -53,23 +64,13 @@
         <item name="android:textColor">?attr/primaryTextColor</item>
     </style>
 
-    <style name="bottomDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
+    <style name="OptionButtonTheme" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_option_menu_icon_24dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
-    <style name="AppThemeDark.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppThemeDark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppThemeDark.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
