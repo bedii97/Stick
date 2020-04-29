@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -27,7 +26,19 @@ public class CreateNoteDialog extends DialogFragment {
 
         return new MaterialAlertDialogBuilder(getActivity(), R.style.createNoteDialogTheme)
                 .setView(R.layout.dialog_create_note)
-                .setPositiveButton(R.string.create_note_dialog_positive_button, null)
+                .setPositiveButton(R.string.create_note_dialog_positive_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText titleET = getDialog().findViewById(R.id.create_note_dialog_title_et);
+                        String title = titleET.getText().toString().trim();
+                        if(inputCheck(title)){ //input check
+                            Log.d(TAG, "onClick: Girdi");
+                            DatabaseHelper db = new DatabaseHelper(getContext());
+                            long noteID = db.insertNote(title, "red");
+                            openNoteDetailActivity(noteID);
+                        }
+                    }
+                })
                 .setNegativeButton(R.string.create_note_dialog_negative_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -35,7 +46,6 @@ public class CreateNoteDialog extends DialogFragment {
                     }
                 })
                 .create();
-
     }
 
     private void openNoteDetailActivity(long id) {
