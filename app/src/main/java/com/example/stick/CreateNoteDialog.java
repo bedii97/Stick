@@ -24,7 +24,7 @@ public class CreateNoteDialog extends DialogFragment {
         return new MaterialAlertDialogBuilder(getActivity())
                 .setView(R.layout.dialog_create_note)
                 .setTitle("Sample")
-                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.createNoteDialogPositiveButton, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         EditText titleET = getDialog().findViewById(R.id.create_note_dialog_title_et);
@@ -37,7 +37,7 @@ public class CreateNoteDialog extends DialogFragment {
                         }
                     }
                 })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.createNoteDialogNegativeButton, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
