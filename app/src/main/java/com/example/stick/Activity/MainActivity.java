@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private ExtendedFloatingActionButton fab;
     private Button dialogBTN;
     private RecyclerView noteRV;
+    private NoteAdapter adapter;
     private List<NoteModel> mNoteList;
 
     @Override
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setNotes() {
-        NoteAdapter adapter = new NoteAdapter(this, mNoteList);
+        adapter = new NoteAdapter(this, mNoteList);
         noteRV.setHasFixedSize(true);
         noteRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         noteRV.setAdapter(adapter);
@@ -149,5 +150,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         getDataFromDB();
         setNotes();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        noteRV = null;
+        adapter = null;
     }
 }
