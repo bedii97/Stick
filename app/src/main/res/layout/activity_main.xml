@@ -37,14 +37,6 @@
 
     <include layout="@layout/activity_main_content" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/activity_main_dialog_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_gravity="bottom|start"
-        android:text="open"/>
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

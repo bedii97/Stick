@@ -14,6 +14,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +29,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private ExtendedFloatingActionButton fab;
     private Button dialogBTN;
@@ -78,16 +79,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-                openNoteDetailActivity();
-            }
-        });
-
-        dialogBTN = (Button) findViewById(R.id.activity_main_dialog_button);
-        dialogBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 createNoteDialog();
             }
         });
@@ -112,7 +103,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNoteDialog() {
         CreateNoteDialog dialog = new CreateNoteDialog();
+        dialog.setOnDestroyListener(new CreateNoteDialog.OnDialogDestroy() {
+            @Override
+            public void onDialogDestroy() {
+                if(fab != null){
+                    fab.setVisibility(View.VISIBLE); //Set Visible Fab Button
+                }
+            }
+        });
         dialog.show(getSupportFragmentManager(), "createDialog");
+        fab.setVisibility(View.GONE); //Hide Button when clicked
     }
 
     private void openNoteDetailActivity() {

@@ -19,6 +19,15 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class CreateNoteDialog extends DialogFragment {
 
     private static final String TAG = "CreateNoteDialog";
+    private OnDialogDestroy mListener;
+
+    public interface OnDialogDestroy{
+        void onDialogDestroy();
+    }
+
+    public void setOnDestroyListener(OnDialogDestroy listener){
+        mListener = listener;
+    }
 
     @NonNull
     @Override
@@ -61,5 +70,11 @@ public class CreateNoteDialog extends DialogFragment {
      */
     private boolean inputCheck(String input){
         return input.length() > 0 ? true : false;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mListener.onDialogDestroy();
     }
 }
