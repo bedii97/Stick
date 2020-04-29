@@ -1,4 +1,4 @@
-package com.example.stick;
+package com.example.stick.Model;
 
 import androidx.annotation.Nullable;
 
@@ -6,23 +6,23 @@ public class NoteModel {
     /**
      * NOTE(FIRST) TABLE DATABASE MODEL
      */
-    private int id;
+    private long id;
     private String title;
     private String color;
     private long date;
 
-    public NoteModel(int id, String title, String color, long date) {
+    public NoteModel(long id, String title, String color, long date) {
         this.id = id;
         this.title = title;
         this.color = color;
         this.date = date;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -9,9 +9,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.example.stick.NoteModel;
+import com.example.stick.Model.NoteModel;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -66,6 +68,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getLong(cursor.getColumnIndex(DBConstants.T1_DATE)));
         db.close();
         return note;
+    }
+
+    public List<NoteModel> getAllNotes() {
+        List<NoteModel> notes = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + DBConstants.T1_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor.moveToNext()){
+            do {
+                NoteModel note = new NoteModel(
+                        cursor.getInt(cursor.getColumnIndex(DBConstants.T1_ID)),
+                        cursor.getString(cursor.getColumnIndex(DBConstants.T1_TITLE)),
+                        cursor.getString(cursor.getColumnIndex(DBConstants.T1_COLOR)),
+                        cursor.getLong(cursor.getColumnIndex(DBConstants.T1_DATE)));
+                notes.add(note);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return notes;
     }
 
 }

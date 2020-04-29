@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activity.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -35,7 +35,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/scroll_deneme" />
+    <include layout="@layout/activity_main_content" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/activity_main_dialog_button"

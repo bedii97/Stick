@@ -1,4 +1,4 @@
-package com.example.stick;
+package com.example.stick.Dialog;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,12 +9,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 
+import com.example.stick.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 public class BottomDialog extends BottomSheetDialogFragment{

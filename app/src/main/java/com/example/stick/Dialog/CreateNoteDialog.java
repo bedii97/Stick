@@ -1,4 +1,4 @@
-package com.example.stick;
+package com.example.stick.Dialog;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.stick.DB.DatabaseHelper;
+import com.example.stick.Activity.NoteDetailActivity;
+import com.example.stick.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class CreateNoteDialog extends DialogFragment {

@@ -1,9 +1,14 @@
-package com.example.stick;
+package com.example.stick.Activity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.example.stick.Adapter.NoteAdapter;
+import com.example.stick.DB.DatabaseHelper;
+import com.example.stick.Dialog.CreateNoteDialog;
+import com.example.stick.Model.NoteModel;
+import com.example.stick.R;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -11,7 +16,8 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.view.Menu;
@@ -19,15 +25,15 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ExtendedFloatingActionButton fab;
-    Button dialogBTN;
+    private ExtendedFloatingActionButton fab;
+    private Button dialogBTN;
+    private RecyclerView noteRV;
+    private List<NoteModel> mNoteList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_logo_24dp);
+        initViews();
+        getDataFromDB();
+        setNotes();
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             Window window = getWindow();
@@ -82,6 +91,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void initViews() {
+        noteRV = findViewById(R.id.activity_main_recycler_view);
+    }
+
+    private void getDataFromDB() {
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        mNoteList = db.getAllNotes();
+    }
+
+    private void setNotes() {
+        NoteAdapter adapter = new NoteAdapter(this, mNoteList);
+        noteRV.setHasFixedSize(true);
+        noteRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        noteRV.setAdapter(adapter);
     }
 
     private void createNoteDialog() {

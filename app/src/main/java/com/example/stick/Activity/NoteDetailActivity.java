@@ -1,15 +1,21 @@
-package com.example.stick;
+package com.example.stick.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.stick.DB.DatabaseHelper;
+import com.example.stick.Dialog.BottomDialog;
+import com.example.stick.Model.NoteModel;
+import com.example.stick.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +26,16 @@ public class NoteDetailActivity extends AppCompatActivity {
     private NoteModel mNote;
 
     //Views
-    private TextView titleTV;
+    private EditText titleET;
+    private RecyclerView taskRV;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_detail);
+        //Init Views
+        initViews();
         //GetNoteID
         Intent intent = getIntent();
         mNoteID = intent.getLongExtra(NOTEID, -1);
@@ -55,14 +64,24 @@ public class NoteDetailActivity extends AppCompatActivity {
         getNote();
     }
 
+    private void initViews() {
+        titleET = findViewById(R.id.activity_note_details_note_title_edit_text);
+        taskRV = findViewById(R.id.activity_note_details_recycler_view);
+    }
+
     private void getNote(){
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         if(mNoteID != -1){
             mNote = db.getNote(mNoteID);
-            Toast.makeText(this, mNote.getTitle(), Toast.LENGTH_LONG).show();
+            setNoteData();//Setting note datas to views
         }else{
             Toast.makeText(this, "Error Occured", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setNoteData() {
+        String title = mNote.getTitle();
+        titleET.setText(title);
     }
 
     public void showBottomSheet() {
