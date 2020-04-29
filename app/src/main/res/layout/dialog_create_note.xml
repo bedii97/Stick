@@ -16,6 +16,7 @@
         android:fontFamily="sans-serif-medium"/>
 
     <EditText
+        android:id="@+id/create_note_dialog_title_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

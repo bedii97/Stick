@@ -21,6 +21,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     ExtendedFloatingActionButton fab;
@@ -83,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNoteDialog() {
         CreateNoteDialog dialog = new CreateNoteDialog();
-        dialog.show(getSupportFragmentManager(), "");
+        dialog.show(getSupportFragmentManager(), "createDialog");
     }
 
     private void openNoteDetailActivity() {
@@ -108,8 +111,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_theme) {
             return true;
-        }
-        else if (id == R.id.action_libraries){
+        } else if (id == R.id.action_libraries) {
             startActivity(new Intent(this, OssLicensesMenuActivity.class));
             OssLicensesMenuActivity.setActivityTitle(getString(R.string.action_libraries));
         }
