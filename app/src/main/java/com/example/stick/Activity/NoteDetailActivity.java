@@ -9,6 +9,7 @@ import com.example.stick.Model.NoteModel;
 import com.example.stick.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,12 +69,12 @@ public class NoteDetailActivity extends AppCompatActivity {
         taskRV = findViewById(R.id.activity_note_details_recycler_view);
     }
 
-    private void getNote(){
+    private void getNote() {
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-        if(mNoteID != -1){
+        if (mNoteID != -1) {
             mNote = db.getNote(mNoteID);
             setNoteData();//Setting note datas to views
-        }else{
+        } else {
             Toast.makeText(this, "Error Occured", Toast.LENGTH_SHORT).show();
         }
     }
@@ -98,6 +99,12 @@ public class NoteDetailActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        String title = mNote.getTitle().trim();
+        String inputTitle = titleET.getText().toString().trim();
+        if (!inputTitle.equals(title)) {
+            //Update DB Title
+            DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+            db.updateTitle(mNoteID, inputTitle);
+        }
     }
 }

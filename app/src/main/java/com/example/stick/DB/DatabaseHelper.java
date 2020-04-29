@@ -89,4 +89,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return notes;
     }
 
+    public boolean updateTitle(long id, String title){
+        String clause = "id="+id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(DBConstants.T1_TITLE, title);
+        int status = db.update(DBConstants.T1_NAME, value, clause, null);
+        db.close();
+        return status > 0;
+    }
+
 }
