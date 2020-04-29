@@ -9,6 +9,11 @@
     <string name="activity_note_details_action_delete">Delete Note</string>
     <string name="activity_note_details_action_edit">Edit Note</string>
 
+    <string name="createNoteDialogTitle">New Note</string>
+    <string name="createNoteDialogPositiveButton">Save</string>
+    <string name="createNoteDialogNegativeButton">Cancel</string>
+    <string name="createNoteDialogEditTextHint">Enter the Note Title</string>
+
     <string name="no_item_include_text">No items yet</string>
 
     <string name="menu_dark_theme">Dark Theme</string>
