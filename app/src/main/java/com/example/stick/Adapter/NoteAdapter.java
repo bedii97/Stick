@@ -21,7 +21,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     private static final String TAG = "NoteAdapter";
 
     public interface OnNoteClickListener{
-        void onNoteClick(int position);
+        void onNoteClick(long id);
     }
 
     public void setOnNoteClickListener(OnNoteClickListener listener){
@@ -72,8 +72,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
                 public void onClick(View v) {
                     if (mListener != null){
                         int position = getAdapterPosition();
+                        long id = mNoteModelList.get(position).getId();
                         if (position != RecyclerView.NO_POSITION){
-                            mListener.onNoteClick(position);
+                            mListener.onNoteClick(id);
                         }
                     }
                 }

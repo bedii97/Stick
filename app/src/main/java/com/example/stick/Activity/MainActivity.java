@@ -10,6 +10,7 @@ import com.example.stick.Dialog.CreateNoteDialog;
 import com.example.stick.Model.NoteModel;
 import com.example.stick.R;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -20,11 +21,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -94,6 +98,12 @@ public class MainActivity extends AppCompatActivity{
 
     private void setNotes() {
         adapter = new NoteAdapter(this, mNoteList);
+        adapter.setOnNoteClickListener(new NoteAdapter.OnNoteClickListener() {
+            @Override
+            public void onNoteClick(long id) {
+                openNoteDetailActivity(id);
+            }
+        });
         noteRV.setHasFixedSize(true);
         noteRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         noteRV.setAdapter(adapter);
@@ -104,8 +114,9 @@ public class MainActivity extends AppCompatActivity{
         dialog.show(getSupportFragmentManager(), "createDialog");
     }
 
-    private void openNoteDetailActivity() {
+    private void openNoteDetailActivity(long id) {
         Intent intent = new Intent(this, NoteDetailActivity.class);
+        intent.putExtra(NoteDetailActivity.NOTEID, id);
         startActivity(intent);
     }
 
@@ -137,8 +148,17 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onStart() {
         super.onStart();
-        getDataFromDB();
-        setNotes();
+        doInBackGround();
+    }
+
+    private void doInBackGround() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getDataFromDB();
+                setNotes();
+            }
+        }, 500);
     }
 
     @Override
