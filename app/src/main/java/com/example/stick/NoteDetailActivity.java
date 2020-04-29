@@ -23,6 +23,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_note_detail);
         Toolbar toolbar = findViewById(R.id.activity_note_details_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_icon_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

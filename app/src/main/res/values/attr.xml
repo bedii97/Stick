@@ -9,6 +9,7 @@
 
     <attr name="groundColor" format="reference"/>
     <attr name="cardColor" format="reference"/>
+    <attr name="cardStrokeColor" format="reference"/>
 
     <attr name="primaryTextColor" format="reference"/>
     <attr name="secondaryTextColor" format="reference"/>

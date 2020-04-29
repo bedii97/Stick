@@ -13,6 +13,7 @@
     <!--Ground Colors (Light)-->
     <color name="groundColorLight">#FFFFFF</color>
     <color name="cardViewColorLight">#FFFFFF</color>
+    <color name="cardViewStrokeColorLight">#EBEBEB</color>
 
     <!--Text Colors (Light)-->
     <color name="primaryTextColorLight">#D9000000</color>
@@ -30,6 +31,7 @@
     <!--Ground Colors (Dark)-->
     <color name="groundColorDark">#121212</color>
     <color name="cardViewColorDark">#191919</color>
+    <color name="cardViewStrokeColorDark">#212121</color>
 
     <!--Text Colors (Dark)-->
     <color name="primaryTextColorDark">#D9FFFFFF</color>

@@ -17,6 +17,7 @@
 
         <item name="groundColor">@color/groundColorLight</item>
         <item name="cardColor">@color/cardViewColorLight</item>
+        <item name="cardStrokeColor">@color/cardViewStrokeColorLight</item>
 
         <!--Text Colors (Light)-->
         <item name="primaryTextColor">@color/primaryTextColorLight</item>
@@ -47,6 +48,7 @@
 
         <item name="groundColor">@color/groundColorDark</item>
         <item name="cardColor">@color/cardViewColorDark</item>
+        <item name="cardStrokeColor">@color/cardViewStrokeColorDark</item>
 
         <!--Text Colors (Dark)-->
         <item name="primaryTextColor">@color/primaryTextColorDark</item>

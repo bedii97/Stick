@@ -10,8 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeDark">
         <activity
-            android:name=".NoteDetailActivity"
-            android:label="@string/activity_note_details_label"/>
+            android:name=".NoteDetailActivity"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
