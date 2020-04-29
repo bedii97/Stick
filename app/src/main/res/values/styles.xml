@@ -15,6 +15,7 @@
 
         <item name="activityNoteDetailsToolbarColor">@color/activityNoteDetailsToolbarColorLight</item>
 
+        <item name="android:windowBackground">@color/groundColorLight</item>
         <item name="groundColor">@color/groundColorLight</item>
         <item name="cardColor">@color/cardViewColorLight</item>
         <item name="cardStrokeColor">@color/cardViewStrokeColorLight</item>
@@ -46,6 +47,7 @@
 
         <item name="activityNoteDetailsToolbarColor">@color/activityNoteDetailsToolbarColorDark</item>
 
+        <item name="android:windowBackground">@color/groundColorDark</item>
         <item name="groundColor">@color/groundColorDark</item>
         <item name="cardColor">@color/cardViewColorDark</item>
         <item name="cardStrokeColor">@color/cardViewStrokeColorDark</item>

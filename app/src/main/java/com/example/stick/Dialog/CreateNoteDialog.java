@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -19,42 +20,22 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class CreateNoteDialog extends DialogFragment {
 
     private static final String TAG = "CreateNoteDialog";
-    private OnDialogDestroy mListener;
-
-    public interface OnDialogDestroy{
-        void onDialogDestroy();
-    }
-
-    public void setOnDestroyListener(OnDialogDestroy listener){
-        mListener = listener;
-    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return new MaterialAlertDialogBuilder(getActivity())
+
+        return new MaterialAlertDialogBuilder(getActivity(), R.style.createNoteDialogTheme)
                 .setView(R.layout.dialog_create_note)
-                .setTitle("Sample")
-                .setPositiveButton(R.string.createNoteDialogPositiveButton, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        EditText titleET = getDialog().findViewById(R.id.create_note_dialog_title_et);
-                        String title = titleET.getText().toString().trim();
-                        if(inputCheck(title)){ //input check
-                            Log.d(TAG, "onClick: Girdi");
-                            DatabaseHelper db = new DatabaseHelper(getContext());
-                            long noteID = db.insertNote(title, "red");
-                            openNoteDetailActivity(noteID);
-                        }
-                    }
-                })
-                .setNegativeButton(R.string.createNoteDialogNegativeButton, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.create_note_dialog_positive_button, null)
+                .setNegativeButton(R.string.create_note_dialog_negative_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
                 .create();
+
     }
 
     private void openNoteDetailActivity(long id) {
@@ -68,13 +49,9 @@ public class CreateNoteDialog extends DialogFragment {
      * @param input
      * @return
      */
-    private boolean inputCheck(String input){
+
+    private boolean inputCheck(String input) {
         return input.length() > 0 ? true : false;
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mListener.onDialogDestroy();
-    }
 }

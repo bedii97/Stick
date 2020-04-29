@@ -29,7 +29,7 @@
     <color name="activityNoteDetailsToolbarColorDark">#1A1565C0</color>
 
     <!--Ground Colors (Dark)-->
-    <color name="groundColorDark">#121212</color>
+    <color name="groundColorDark">#0C0C0C</color>
     <color name="cardViewColorDark">#191919</color>
     <color name="cardViewStrokeColorDark">#212121</color>
 

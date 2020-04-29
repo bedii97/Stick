@@ -1,7 +1,6 @@
 package com.example.stick.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,9 +47,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         long id = currentNote.getId();
         String title = currentNote.getTitle();
         String color = currentNote.getColor();
-        holder.tv1.setText(Long.toString(id));
-        holder.tv2.setText(title);
-        holder.tv3.setText(color);
+        holder.tv1.setText(title);
+        holder.tv2.setText(color);
     }
 
     @Override
@@ -61,14 +59,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     class NoteViewHolder extends RecyclerView.ViewHolder {
 
         //Tanımlama
-        TextView tv1, tv2, tv3;
+        TextView  tv1, tv2;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             //init
-            tv1 = itemView.findViewById(R.id.textView1);
-            tv2 = itemView.findViewById(R.id.textView2);
-            tv3 = itemView.findViewById(R.id.textView3);
+            tv1 = itemView.findViewById(R.id.note_item_note_name_text_view);
+            tv2 = itemView.findViewById(R.id.note_item_date_time_text_view);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -9,10 +9,13 @@
     <string name="activity_note_details_action_delete">Notu Sil</string>
     <string name="activity_note_details_action_edit">Notu Düzenle</string>
 
-    <string name="createNoteDialogTitle">Yeni Not</string>
-    <string name="createNoteDialogPositiveButton">Kaydet</string>
-    <string name="createNoteDialogNegativeButton">İptal</string>
-    <string name="createNoteDialogEditTextHint">Not Başlığı Girin</string>
+    <string name="create_note_dialog_title">Yeni Not</string>
+    <string name="create_note_dialog_positive_button">Kaydet</string>
+    <string name="create_note_dialog_negative_button">İptal</string>
+    <string name="create_note_dialog_edit_text_hint">Not Başlığı Girin</string>
+
+    <string name="note_item_note_name">Not Adı</string>
+    <string name="note_item_note_date">Tarih Saat</string>
 
     <string name="no_item_include_text">Henüz bir öğe yok</string>
 

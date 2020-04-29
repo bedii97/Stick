@@ -25,14 +25,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
     private ExtendedFloatingActionButton fab;
-    private Button dialogBTN;
     private RecyclerView noteRV;
     private NoteAdapter adapter;
     private List<NoteModel> mNoteList;
@@ -103,16 +101,7 @@ public class MainActivity extends AppCompatActivity{
 
     private void createNoteDialog() {
         CreateNoteDialog dialog = new CreateNoteDialog();
-        dialog.setOnDestroyListener(new CreateNoteDialog.OnDialogDestroy() {
-            @Override
-            public void onDialogDestroy() {
-                if(fab != null){
-                    fab.setVisibility(View.VISIBLE); //Set Visible Fab Button
-                }
-            }
-        });
         dialog.show(getSupportFragmentManager(), "createDialog");
-        fab.setVisibility(View.GONE); //Hide Button when clicked
     }
 
     private void openNoteDetailActivity() {
