@@ -1,5 +1,6 @@
 package com.example.stick.Activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,8 +23,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class NoteDetailActivity extends AppCompatActivity {
@@ -39,7 +38,6 @@ public class NoteDetailActivity extends AppCompatActivity {
     private TaskAdapter mAdapter;
 
     private List<TaskModel> mTaskList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +70,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBottomSheet();
+                showBottomSheet(-1);
             }
         });
         //Get Note From Database
@@ -108,60 +106,48 @@ public class NoteDetailActivity extends AppCompatActivity {
         mAdapter = new TaskAdapter(this, mTaskList);
         mAdapter.setOnTaskClickListener(new TaskAdapter.OnTaskClickListener() {
             @Override
-            public void onTaskClick(long id) {
-                //OpenBottomSheet
+            public void onTaskClick(int position) {
+                showBottomSheet(mTaskList.get(position).getId());
             }
         });
         taskRV.setHasFixedSize(true);
         taskRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         taskRV.setAdapter(mAdapter);
+
     }
 
-    public void showBottomSheet() {
+    public void showBottomSheet(long id) {
         BottomDialog bottomDialog = BottomDialog.newInstance();
         bottomDialog.setOnTaskAddListener(new BottomDialog.BottomDialogListener() {
             @Override
             public void onAddItemClick(TaskModel task) {
                 Log.d(TAG, "Listener İçinde");
-                refreshTasks(task);
+                addTask(task);
             }
 
             @Override
             public void onDialogClose() {
                 Log.d(TAG, "Dialog Kapandı");
+                refreshTasks();
             }
         });
         Bundle bundle = new Bundle();
-        bundle.putLong(NOTEID, mNoteID);
+        bundle.putLong(BottomDialog.NOTE_ID, mNoteID);
+        bundle.putLong(BottomDialog.TASK_ID, id);
         bottomDialog.setArguments(bundle);
         bottomDialog.show(getSupportFragmentManager(), BottomDialog.TAG);
     }
 
-    private void refreshTasks(TaskModel task){
-        /*
-        long id = task.getId();
-        boolean isEdit = false;
-        int editPosition = 0;
-        for (TaskModel currentTask : mTaskList) {
-            long currentId = currentTask.getId();
-            editPosition++;
-            if(currentId == id){
-                isEdit = true;
-                break;
-            }
-        }
-        if(isEdit){
-            mTaskList.set(editPosition-1, task);
-            Log.d(TAG, "Task Varmış");
-        }else{
-            mTaskList.add(task);
-            Log.d(TAG, "Task Yokmuş");
-        }*/
+    private void addTask(TaskModel task){
         String content = task.getContent();
         String status = task.getStatus();
         long parentID = task.getParentID();
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         long taskID = db.insertTask(content, status, parentID);
+        refreshTasks();
+    }
+
+    private void refreshTasks(){
         getTasksFromDB();
         setTaskData();
     }

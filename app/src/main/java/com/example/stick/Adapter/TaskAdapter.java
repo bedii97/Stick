@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
+import com.google.android.material.checkbox.MaterialCheckBox;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private static final String TAG = "TaskAdapter";
 
     public interface OnTaskClickListener{
-        void onTaskClick(long id);
+        void onTaskClick(int position);
     }
 
     public void setOnTaskClickListener(OnTaskClickListener listener){
@@ -45,8 +46,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         //binding
         TaskModel currentTask = mTaskList.get(position);
-        holder.tv1.setText(Float.toString(currentTask.getId()));
-        holder.tv2.setText(currentTask.getContent());
+        holder.contentTV.setText(Float.toString(currentTask.getId()));
+        holder.dateTV.setText(currentTask.getContent());
     }
 
     @Override
@@ -58,14 +59,28 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     class TaskViewHolder extends RecyclerView.ViewHolder{
         //Tanımla
-        TextView tv1, tv2;
+        TextView contentTV, dateTV;
+        MaterialCheckBox statusCB;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //init
-            tv1 = itemView.findViewById(R.id.task_item_task_name_text_view);
-            tv2 = itemView.findViewById(R.id.tast_item_date_text_view);
+            contentTV = itemView.findViewById(R.id.task_item_task_name_text_view);
+            dateTV = itemView.findViewById(R.id.task_item_date_text_view);
+            statusCB = itemView.findViewById(R.id.task_item_task_status_check_box);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            mListener.onTaskClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

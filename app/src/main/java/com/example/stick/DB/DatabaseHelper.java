@@ -90,6 +90,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return notes;
     }
 
+    public TaskModel getTask(long taskID){
+        String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_ID + " = " + taskID;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+        TaskModel task = new TaskModel(
+                cursor.getInt(cursor.getColumnIndex(DBConstants.T2_ID)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.T2_CONTENT)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.T2_STATUS)),
+                cursor.getLong(cursor.getColumnIndex(DBConstants.T2_DATE)),
+                cursor.getLong(cursor.getColumnIndex(DBConstants.T2_PARENTID)));
+        db.close();
+        return task;
+    }
+
+    public boolean updateTaskContent(long id, String content){
+        String clause = DBConstants.T2_ID+"="+id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(DBConstants.T2_CONTENT, content);
+        int status = db.update(DBConstants.T2_NAME, value, clause, null);
+        db.close();
+        return status > 0;
+    }
+
     public List<TaskModel> getTasks(long noteID){
         List<TaskModel> tasks = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_PARENTID + " = " + noteID;

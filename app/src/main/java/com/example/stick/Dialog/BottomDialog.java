@@ -8,29 +8,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 
-import com.example.stick.Activity.NoteDetailActivity;
-import com.example.stick.Adapter.TaskAdapter;
+import com.example.stick.DB.DBConstants;
 import com.example.stick.DB.DatabaseHelper;
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Calendar;
-import java.util.List;
+import java.util.Objects;
 
 public class BottomDialog extends BottomSheetDialogFragment{
     public static final String TAG = "BottomDialog";
+    public static final String NOTE_ID = "noteid";
+    public static final String TASK_ID = "taskid";
     private BottomDialogListener mListener;
 
     private long mNoteID;
+    private long mTaskID;
+    private TaskModel mTask;
 
     //Views
     private EditText contentET;
@@ -58,16 +59,24 @@ public class BottomDialog extends BottomSheetDialogFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mNoteID = getArguments().getLong(NoteDetailActivity.NOTEID, -1);
+        getDataFromBundle();
         initViews(view);
-        getTasksFromDB();
     }
 
-    private void getTasksFromDB() {
+    private void getDataFromBundle() {
+        mNoteID = getArguments().getLong(NOTE_ID, -1);
+        mTaskID = getArguments().getLong(TASK_ID, -1);
+        if(mTaskID != -1){
+            //DB'den task çekilecek mContentText'e set edilecek
+            DatabaseHelper db = new DatabaseHelper(getActivity().getApplicationContext());
+            mTask = db.getTask(mTaskID);
+        }
     }
 
     private void initViews(View v) {
         contentET = v.findViewById(R.id.bottom_dialog_et);
+        String contentText = mTaskID != -1 ? mTask.getContent() : ""; //isNull Condition
+        contentET.setText(contentText);
         addTaskBTN = v.findViewById(R.id.bottom_dialog_btn);
         addTaskBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,15 +84,19 @@ public class BottomDialog extends BottomSheetDialogFragment{
                 Log.d(TAG, "onClick: Tıkladı");
                 String content = contentET.getText().toString().trim();
                 if(!content.isEmpty()){ //Checkbox kontrolüde yap
-                    long dateMilis = Calendar.getInstance().getTimeInMillis();
-                    TaskModel task = new TaskModel(0, content, "true", dateMilis, mNoteID);
-                    mListener.onAddItemClick(task);
+                    if(mTaskID != -1){
+                        DatabaseHelper db = new DatabaseHelper(getActivity().getApplicationContext());
+                        db.updateTaskContent(mTaskID, content);
+                        mListener.onDialogClose();
+                    }else{
+                        long dateMilis = Calendar.getInstance().getTimeInMillis();
+                        TaskModel task = new TaskModel(0, content, "true", dateMilis, mNoteID);
+                        mListener.onAddItemClick(task);
+                    }
                 }
             }
         });
     }
-
-
 
     @Override
     public void onStart() {
