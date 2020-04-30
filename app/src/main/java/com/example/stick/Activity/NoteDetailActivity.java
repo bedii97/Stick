@@ -112,11 +112,10 @@ public class NoteDetailActivity extends AppCompatActivity {
 
             @Override
             public void onCheckClick(int position) {
-                /*DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 long id = mTaskList.get(position).getId();
-                String status = mTaskList.get(position).getStatus();
-                db.updateTaskStatus(id, status);*/
-                Toast.makeText(NoteDetailActivity.this, "Clickledin", Toast.LENGTH_SHORT).show();
+                int status = mTaskList.get(position).getStatus();
+                db.updateTaskStatus(id, status);
             }
         });
         taskRV.setHasFixedSize(true);
@@ -149,7 +148,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
     private void addTask(TaskModel task){
         String content = task.getContent();
-        String status = task.getStatus();
+        int status = task.getStatus();
         long parentID = task.getParentID();
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         long taskID = db.insertTask(content, status, parentID);

@@ -1,6 +1,7 @@
 package com.example.stick.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.checkbox.MaterialCheckBox;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder>{
@@ -48,8 +50,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, final int position) {
         //binding
         TaskModel currentTask = mTaskList.get(position);
-        holder.contentTV.setText(currentTask.getContent());
-        holder.dateTV.setText(currentTask.getStatus());
+        String content = currentTask.getContent();
+        long dateInMilis = currentTask.getDate();
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(dateInMilis);
+        String date = c.getTime().toString();
+        boolean status = currentTask.getStatus() != 0;
+        holder.contentTV.setText(content);
+        holder.dateTV.setText(date);
+        holder.statusCB.setChecked(status);
+        if (status) {
+            holder.contentTV.setPaintFlags(holder.contentTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        }
         holder.statusCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

@@ -84,15 +84,18 @@ public class BottomDialog extends BottomSheetDialogFragment{
                 Log.d(TAG, "onClick: Tıkladı");
                 String content = contentET.getText().toString().trim();
                 if(!content.isEmpty()){ //Checkbox kontrolüde yap
-                    if(mTaskID != -1){
+                    if(mTaskID != -1){ //isEditMode
                         DatabaseHelper db = new DatabaseHelper(getActivity().getApplicationContext());
                         db.updateTaskContent(mTaskID, content);
                         mListener.onDialogClose();
                     }else{
                         long dateMilis = Calendar.getInstance().getTimeInMillis();
-                        TaskModel task = new TaskModel(0, content, "true", dateMilis, mNoteID);
+                        TaskModel task = new TaskModel(0, content, 0, dateMilis, mNoteID);
+                        contentET.setText("");
                         mListener.onAddItemClick(task);
                     }
+                }else{
+                    contentET.setError("Empty");
                 }
             }
         });

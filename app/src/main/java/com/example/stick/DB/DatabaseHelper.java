@@ -98,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         TaskModel task = new TaskModel(
                 cursor.getInt(cursor.getColumnIndex(DBConstants.T2_ID)),
                 cursor.getString(cursor.getColumnIndex(DBConstants.T2_CONTENT)),
-                cursor.getString(cursor.getColumnIndex(DBConstants.T2_STATUS)),
+                cursor.getInt(cursor.getColumnIndex(DBConstants.T2_STATUS)),
                 cursor.getLong(cursor.getColumnIndex(DBConstants.T2_DATE)),
                 cursor.getLong(cursor.getColumnIndex(DBConstants.T2_PARENTID)));
         db.close();
@@ -115,11 +115,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return affected > 0;
     }
 
-    public boolean updateTaskStatus(long id, String status){
+    public boolean updateTaskStatus(long id, int status){
         String clause = DBConstants.T2_ID+"="+id;
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
-        //value.put(DBConstants.T2_STATUS, );
+        value.put(DBConstants.T2_STATUS, reverseIntBool(status));
         int affected = db.update(DBConstants.T2_NAME, value, clause, null);
         db.close();
         return affected > 0;
@@ -135,7 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 TaskModel task = new TaskModel(
                         cursor.getInt(cursor.getColumnIndex(DBConstants.T2_ID)),
                         cursor.getString(cursor.getColumnIndex(DBConstants.T2_CONTENT)),
-                        cursor.getString(cursor.getColumnIndex(DBConstants.T2_STATUS)),
+                        cursor.getInt(cursor.getColumnIndex(DBConstants.T2_STATUS)),
                         cursor.getLong(cursor.getColumnIndex(DBConstants.T2_DATE)),
                         cursor.getLong(cursor.getColumnIndex(DBConstants.T2_PARENTID)));
                 tasks.add(task);
@@ -145,7 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return tasks;
     }
 
-    public long insertTask(String content, String status, long parentID){
+    public long insertTask(String content, int status, long parentID){
         long dateMilis = Calendar.getInstance().getTimeInMillis();
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -166,6 +166,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int affected = db.update(DBConstants.T1_NAME, value, clause, null);
         db.close();
         return affected > 0;
+    }
+
+    private int reverseIntBool(int i){
+        return i == 0 ? 1 : 0;
     }
 
 }

@@ -29,7 +29,7 @@ public class DBConstants {
     public static final String T2_QUERY = "CREATE TABLE " + T2_NAME + " ("
             + T2_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + T2_CONTENT + " TEXT, "
-            + T2_STATUS + " TEXT, "
+            + T2_STATUS + " INTEGER, "
             + T2_DATE + " INTEGER, "
             + T2_PARENTID + " INTEGER)";
 }

@@ -5,11 +5,11 @@ import androidx.annotation.Nullable;
 public class TaskModel {
     private long id;
     private String content;
-    private String status;
+    private int status;
     private long date;
     private long parentID;
 
-    public TaskModel(@Nullable long id, String content, String status, long date, long parentID) {
+    public TaskModel(@Nullable long id, String content, int status, long date, long parentID) {
         this.id = id;
         this.content = content;
         this.status = status;
@@ -33,11 +33,11 @@ public class TaskModel {
         this.content = content;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
