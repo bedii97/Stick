@@ -34,6 +34,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
+    public static final String TAG = "MainActivity";
+
     private ExtendedFloatingActionButton fab;
     private RecyclerView noteRV;
     private NoteAdapter adapter;

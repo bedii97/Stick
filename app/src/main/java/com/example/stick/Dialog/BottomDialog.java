@@ -2,27 +2,47 @@ package com.example.stick.Dialog;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 
+import com.example.stick.Activity.NoteDetailActivity;
+import com.example.stick.Adapter.TaskAdapter;
+import com.example.stick.DB.DatabaseHelper;
+import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.util.Calendar;
+import java.util.List;
 
 public class BottomDialog extends BottomSheetDialogFragment{
     public static final String TAG = "BottomDialog";
     private BottomDialogListener mListener;
 
+    private long mNoteID;
+
+    //Views
+    private EditText contentET;
+    private AppCompatImageButton addTaskBTN;
+
     public interface BottomDialogListener{
-        void onAddItemClick(String text);
+        void onAddItemClick(TaskModel task);
         void onDialogClose();
+    }
+
+    public void setOnTaskAddListener(BottomDialogListener listener){
+        mListener = listener;
     }
 
     public static BottomDialog newInstance() {
@@ -38,17 +58,32 @@ public class BottomDialog extends BottomSheetDialogFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final EditText editText = view.findViewById(R.id.bottom_dialog_et);
-        ImageButton button = view.findViewById(R.id.bottom_dialog_btn);
-        button.setOnClickListener(new View.OnClickListener() {
+        mNoteID = getArguments().getLong(NoteDetailActivity.NOTEID, -1);
+        initViews(view);
+        getTasksFromDB();
+    }
+
+    private void getTasksFromDB() {
+    }
+
+    private void initViews(View v) {
+        contentET = v.findViewById(R.id.bottom_dialog_et);
+        addTaskBTN = v.findViewById(R.id.bottom_dialog_btn);
+        addTaskBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onAddItemClick(editText.getText().toString());
-                dismiss();
+                Log.d(TAG, "onClick: Tıkladı");
+                String content = contentET.getText().toString().trim();
+                if(!content.isEmpty()){ //Checkbox kontrolüde yap
+                    long dateMilis = Calendar.getInstance().getTimeInMillis();
+                    TaskModel task = new TaskModel(0, content, "true", dateMilis, mNoteID);
+                    mListener.onAddItemClick(task);
+                }
             }
         });
-        //view.findViewById(R.id.bottom_dialog_et).setOnClickListener(this);
     }
+
+
 
     @Override
     public void onStart() {
@@ -64,12 +99,12 @@ public class BottomDialog extends BottomSheetDialogFragment{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof BottomDialogListener) {
+        /*if (context instanceof BottomDialogListener) {
             mListener = (BottomDialogListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement ItemClickListener");
-        }
+        }*/
     }
 
     @Override

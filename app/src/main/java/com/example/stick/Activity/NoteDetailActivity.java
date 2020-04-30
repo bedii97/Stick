@@ -3,24 +3,32 @@ package com.example.stick.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.stick.Adapter.TaskAdapter;
 import com.example.stick.DB.DatabaseHelper;
 import com.example.stick.Dialog.BottomDialog;
 import com.example.stick.Model.NoteModel;
+import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class NoteDetailActivity extends AppCompatActivity {
 
+    private static final String TAG = "NoteDetailActivity";
     public static final String NOTEID = "noteid";
     private long mNoteID;
     private NoteModel mNote;
@@ -28,6 +36,9 @@ public class NoteDetailActivity extends AppCompatActivity {
     //Views
     private EditText titleET;
     private RecyclerView taskRV;
+    private TaskAdapter mAdapter;
+
+    private List<TaskModel> mTaskList;
 
 
     @Override
@@ -39,6 +50,12 @@ public class NoteDetailActivity extends AppCompatActivity {
         //GetNoteID
         Intent intent = getIntent();
         mNoteID = intent.getLongExtra(NOTEID, -1);
+        //GetNote
+        getNote();
+        //GetTasks
+        getTasksFromDB();
+        //SetTasks
+        setTaskData();
         //SetUp Toolbar
         Toolbar toolbar = findViewById(R.id.activity_note_details_toolbar);
         setSupportActionBar(toolbar);
@@ -47,8 +64,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Back Button Clicked", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                onBackPressed();
             }
         });
 
@@ -56,12 +72,10 @@ public class NoteDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showBottomSheet();
             }
         });
         //Get Note From Database
-        getNote();
     }
 
     private void initViews() {
@@ -84,9 +98,72 @@ public class NoteDetailActivity extends AppCompatActivity {
         titleET.setText(title);
     }
 
+    private void getTasksFromDB(){
+        //GetTasks
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        mTaskList = db.getTasks(mNoteID);
+    }
+
+    private void setTaskData(){
+        mAdapter = new TaskAdapter(this, mTaskList);
+        mAdapter.setOnTaskClickListener(new TaskAdapter.OnTaskClickListener() {
+            @Override
+            public void onTaskClick(long id) {
+                //OpenBottomSheet
+            }
+        });
+        taskRV.setHasFixedSize(true);
+        taskRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        taskRV.setAdapter(mAdapter);
+    }
+
     public void showBottomSheet() {
         BottomDialog bottomDialog = BottomDialog.newInstance();
+        bottomDialog.setOnTaskAddListener(new BottomDialog.BottomDialogListener() {
+            @Override
+            public void onAddItemClick(TaskModel task) {
+                Log.d(TAG, "Listener İçinde");
+                refreshTasks(task);
+            }
+
+            @Override
+            public void onDialogClose() {
+                Log.d(TAG, "Dialog Kapandı");
+            }
+        });
+        Bundle bundle = new Bundle();
+        bundle.putLong(NOTEID, mNoteID);
+        bottomDialog.setArguments(bundle);
         bottomDialog.show(getSupportFragmentManager(), BottomDialog.TAG);
+    }
+
+    private void refreshTasks(TaskModel task){
+        /*
+        long id = task.getId();
+        boolean isEdit = false;
+        int editPosition = 0;
+        for (TaskModel currentTask : mTaskList) {
+            long currentId = currentTask.getId();
+            editPosition++;
+            if(currentId == id){
+                isEdit = true;
+                break;
+            }
+        }
+        if(isEdit){
+            mTaskList.set(editPosition-1, task);
+            Log.d(TAG, "Task Varmış");
+        }else{
+            mTaskList.add(task);
+            Log.d(TAG, "Task Yokmuş");
+        }*/
+        String content = task.getContent();
+        String status = task.getStatus();
+        long parentID = task.getParentID();
+        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        long taskID = db.insertTask(content, status, parentID);
+        getTasksFromDB();
+        setTaskData();
     }
 
     @Override
@@ -105,6 +182,7 @@ public class NoteDetailActivity extends AppCompatActivity {
             //Update DB Title
             DatabaseHelper db = new DatabaseHelper(getApplicationContext());
             db.updateTitle(mNoteID, inputTitle);
+            Log.d(TAG, "onDestroy: Updated");
         }
     }
 }
