@@ -35,7 +35,7 @@
         app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/bottom_dialog_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"

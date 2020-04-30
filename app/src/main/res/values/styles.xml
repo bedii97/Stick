@@ -13,12 +13,9 @@
         <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
         <item name="actionOverflowButtonStyle">@style/OptionButtonTheme</item>
 
-        <item name="activityNoteDetailsToolbarColor">@color/activityNoteDetailsToolbarColorLight</item>
-
         <item name="android:windowBackground">@color/groundColorLight</item>
         <item name="groundColor">@color/groundColorLight</item>
         <item name="cardColor">@color/cardViewColorLight</item>
-        <item name="cardStrokeColor">@color/cardViewStrokeColorLight</item>
 
         <!--Text Colors (Light)-->
         <item name="primaryTextColor">@color/primaryTextColorLight</item>
@@ -45,12 +42,9 @@
         <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="actionOverflowButtonStyle">@style/OptionButtonTheme</item>
 
-        <item name="activityNoteDetailsToolbarColor">@color/activityNoteDetailsToolbarColorDark</item>
-
         <item name="android:windowBackground">@color/groundColorDark</item>
         <item name="groundColor">@color/groundColorDark</item>
         <item name="cardColor">@color/cardViewColorDark</item>
-        <item name="cardStrokeColor">@color/cardViewStrokeColorDark</item>
 
         <!--Text Colors (Dark)-->
         <item name="primaryTextColor">@color/primaryTextColorDark</item>
@@ -60,6 +54,13 @@
         <item name="primaryButtonColor">@color/primaryButtonColorDark</item>
         <item name="secondaryButtonColor">@color/secondaryButtonColorDark</item>
 
+    </style>
+
+    <!-- SplashScreen theme. -->
+    <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="collapseTextAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
@@ -74,19 +75,26 @@
     </style>
 
     <style name="createNoteDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
-        <item name="android:background">?attr/cardColor</item>
         <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
         <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
     </style>
 
+    <style name="bottomDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
     <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="backgroundTint">@android:color/transparent</item>
-        <item name="android:textColor">?attr/primaryButtonColor</item>
+        <item name="backgroundTint">?attr/primaryButtonColor</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="Alert.Button.Negative" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">?attr/secondaryTextColor</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <!--style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />

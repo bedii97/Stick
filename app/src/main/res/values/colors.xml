@@ -5,15 +5,13 @@
     <color name="colorPrimaryDark">#0D47A1</color>
     <color name="colorAccent">#1565C0</color>
 
+    <color name="splash_screen_color">#1565C0</color>
 
     <!--LIGHT MODE COLORS-->
-
-    <color name="activityNoteDetailsToolbarColorLight">#FFFFFF</color>
 
     <!--Ground Colors (Light)-->
     <color name="groundColorLight">#FFFFFF</color>
     <color name="cardViewColorLight">#FFFFFF</color>
-    <color name="cardViewStrokeColorLight">#EBEBEB</color>
 
     <!--Text Colors (Light)-->
     <color name="primaryTextColorLight">#D9000000</color>
@@ -26,12 +24,9 @@
 
     <!--DARK MODE COLORS-->
 
-    <color name="activityNoteDetailsToolbarColorDark">#1A1565C0</color>
-
     <!--Ground Colors (Dark)-->
-    <color name="groundColorDark">#0C0C0C</color>
-    <color name="cardViewColorDark">#191919</color>
-    <color name="cardViewStrokeColorDark">#212121</color>
+    <color name="groundColorDark">#121212</color>
+    <color name="cardViewColorDark">#222222</color>
 
     <!--Text Colors (Dark)-->
     <color name="primaryTextColorDark">#D9FFFFFF</color>

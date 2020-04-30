@@ -47,7 +47,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         TaskModel currentTask = mTaskList.get(position);
         holder.tv1.setText(Float.toString(currentTask.getId()));
         holder.tv2.setText(currentTask.getContent());
-        holder.tv3.setText(currentTask.getStatus());
     }
 
     @Override
@@ -59,15 +58,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     class TaskViewHolder extends RecyclerView.ViewHolder{
         //Tanımla
-        TextView tv1, tv2, tv3;
+        TextView tv1, tv2;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //init
-            tv1 = itemView.findViewById(R.id.tast_item_tv1);
-            tv2 = itemView.findViewById(R.id.tast_item_tv2);
-            tv3 = itemView.findViewById(R.id.tast_item_tv3);
+            tv1 = itemView.findViewById(R.id.task_item_task_name_text_view);
+            tv2 = itemView.findViewById(R.id.tast_item_date_text_view);
         }
     }
 }

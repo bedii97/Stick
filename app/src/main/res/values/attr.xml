@@ -3,13 +3,11 @@
 
     <attr name="appBarTheme" format="reference"/>
     <attr name="toolbarPopupTheme" format="reference"/>
-    <attr name="activityNoteDetailsToolbarColor" format="reference"/>
 
     <attr name="collapsedTitleTextColor" format="reference"/>
 
     <attr name="groundColor" format="reference"/>
     <attr name="cardColor" format="reference"/>
-    <attr name="cardStrokeColor" format="reference"/>
 
     <attr name="primaryTextColor" format="reference"/>
     <attr name="secondaryTextColor" format="reference"/>

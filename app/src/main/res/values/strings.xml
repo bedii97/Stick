@@ -25,6 +25,6 @@
 
     <string name="add_note_edit_text_hint">Add Note</string>
 
-    <string name="title_activity_note_detail">NoteDetailActivity</string>
+    <!--Content Descriptions-->
 
 </resources>

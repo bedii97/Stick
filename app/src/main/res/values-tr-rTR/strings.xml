@@ -23,8 +23,8 @@
 
     <string name="add_note_list_text">Not Ekle</string>
 
-    <string name="title_activity_note_detail">NoteDetailActivity</string>
-
     <string name="add_note_edit_text_hint">Not Ekle</string>
+
+    <!--Content Descriptions-->
 
 </resources>
