@@ -109,6 +109,15 @@ public class NoteDetailActivity extends AppCompatActivity {
             public void onTaskClick(int position) {
                 showBottomSheet(mTaskList.get(position).getId());
             }
+
+            @Override
+            public void onCheckClick(int position) {
+                /*DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                long id = mTaskList.get(position).getId();
+                String status = mTaskList.get(position).getStatus();
+                db.updateTaskStatus(id, status);*/
+                Toast.makeText(NoteDetailActivity.this, "Clickledin", Toast.LENGTH_SHORT).show();
+            }
         });
         taskRV.setHasFixedSize(true);
         taskRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

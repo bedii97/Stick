@@ -110,9 +110,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put(DBConstants.T2_CONTENT, content);
-        int status = db.update(DBConstants.T2_NAME, value, clause, null);
+        int affected = db.update(DBConstants.T2_NAME, value, clause, null);
         db.close();
-        return status > 0;
+        return affected > 0;
+    }
+
+    public boolean updateTaskStatus(long id, String status){
+        String clause = DBConstants.T2_ID+"="+id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        //value.put(DBConstants.T2_STATUS, );
+        int affected = db.update(DBConstants.T2_NAME, value, clause, null);
+        db.close();
+        return affected > 0;
     }
 
     public List<TaskModel> getTasks(long noteID){
@@ -153,9 +163,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put(DBConstants.T1_TITLE, title);
-        int status = db.update(DBConstants.T1_NAME, value, clause, null);
+        int affected = db.update(DBConstants.T1_NAME, value, clause, null);
         db.close();
-        return status > 0;
+        return affected > 0;
     }
 
 }

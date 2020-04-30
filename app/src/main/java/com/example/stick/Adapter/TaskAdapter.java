@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public interface OnTaskClickListener{
         void onTaskClick(int position);
+        void onCheckClick(int position);
     }
 
     public void setOnTaskClickListener(OnTaskClickListener listener){
@@ -43,11 +45,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TaskViewHolder holder, final int position) {
         //binding
         TaskModel currentTask = mTaskList.get(position);
-        holder.contentTV.setText(Float.toString(currentTask.getId()));
-        holder.dateTV.setText(currentTask.getContent());
+        holder.contentTV.setText(currentTask.getContent());
+        holder.dateTV.setText(currentTask.getStatus());
+        holder.statusCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mListener.onCheckClick(position);
+            }
+        });
     }
 
     @Override

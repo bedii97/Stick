@@ -30,6 +30,6 @@ public class DBConstants {
             + T2_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + T2_CONTENT + " TEXT, "
             + T2_STATUS + " TEXT, "
-            +T2_DATE + " INTEGER, "
+            + T2_DATE + " INTEGER, "
             + T2_PARENTID + " INTEGER)";
 }
