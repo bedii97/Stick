@@ -14,14 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 
-import com.example.stick.DB.DBConstants;
 import com.example.stick.DB.DatabaseHelper;
+import com.example.stick.Helper.EditTextHelper;
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 public class BottomDialog extends BottomSheetDialogFragment{
     public static final String TAG = "BottomDialog";
@@ -77,28 +76,36 @@ public class BottomDialog extends BottomSheetDialogFragment{
         contentET = v.findViewById(R.id.bottom_dialog_et);
         String contentText = mTaskID != -1 ? mTask.getContent() : ""; //isNull Condition
         contentET.setText(contentText);
+        //Focus to EditText
+        contentET.requestFocus();
+        //Open Keyboard
+        new EditTextHelper().openKeyboard(getActivity().getApplicationContext(), contentET);
+        //Init Button
         addTaskBTN = v.findViewById(R.id.bottom_dialog_btn);
+        //Set onClickButton
         addTaskBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: Tıkladı");
                 String content = contentET.getText().toString().trim();
-                if(!content.isEmpty()){ //Checkbox kontrolüde yap
-                    if(mTaskID != -1){ //isEditMode
+                if(!isContentEmpty()){ //Checkbox kontrolüde yap
+                    if(mTaskID != -1){ //Edit Mode ON
                         DatabaseHelper db = new DatabaseHelper(getActivity().getApplicationContext());
                         db.updateTaskContent(mTaskID, content);
                         mListener.onDialogClose();
-                    }else{
+                    }else{//Edit Mode OFF
                         long dateMilis = Calendar.getInstance().getTimeInMillis();
                         TaskModel task = new TaskModel(0, content, 0, dateMilis, mNoteID);
                         contentET.setText("");
                         mListener.onAddItemClick(task);
                     }
-                }else{
-                    contentET.setError("Empty");
                 }
             }
         });
+    }
+
+    private boolean isContentEmpty(){
+        return contentET.getText().toString().trim().isEmpty();
     }
 
     @Override

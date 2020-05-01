@@ -127,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<TaskModel> getTasks(long noteID){
         List<TaskModel> tasks = new ArrayList<>();
-        String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_PARENTID + " = " + noteID;
+        String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_PARENTID + " = " + noteID + " ORDER BY " + DBConstants.T2_ID + " DESC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToNext()){

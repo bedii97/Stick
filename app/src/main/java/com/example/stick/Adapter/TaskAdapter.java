@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.stick.DB.DatabaseHelper;
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -61,7 +62,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.statusCB.setChecked(status);
         if (status) {
             holder.contentTV.setPaintFlags(holder.contentTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        }
+        }/*else{
+            holder.contentTV.setPaintFlags(holder.contentTV.getPaintFlags() & ~ Paint.STRIKE_THRU_TEXT_FLAG);
+        }*/
         holder.statusCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -74,8 +77,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public int getItemCount() {
         return mTaskList.size();
     }
-
-
 
     class TaskViewHolder extends RecyclerView.ViewHolder{
         //Tanımla

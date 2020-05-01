@@ -1,4 +1,4 @@
-package com.example.stick;
+package com.example.stick.Helper;
 
 import java.text.SimpleDateFormat;
 

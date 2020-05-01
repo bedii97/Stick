@@ -117,6 +117,7 @@ public class NoteDetailActivity extends AppCompatActivity {
                 long id = mTaskList.get(position).getId();
                 int status = mTaskList.get(position).getStatus();
                 db.updateTaskStatus(id, status);
+                refreshTasks();
             }
         });
         taskRV.setHasFixedSize(true);
@@ -153,7 +154,12 @@ public class NoteDetailActivity extends AppCompatActivity {
         long parentID = task.getParentID();
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         long taskID = db.insertTask(content, status, parentID);
-        refreshTasks();
+        //refreshTasks();
+        //Insert Animation
+        TaskModel newTask = db.getTask(taskID);
+        mTaskList.add(0, newTask);
+        mAdapter.notifyItemInserted(0);
+        taskRV.scrollToPosition(0);
     }
 
     private void refreshTasks(){
