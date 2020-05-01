@@ -78,6 +78,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return mTaskList.size();
     }
 
+    public void deleteItem(int position){
+        mTaskList.remove(position);
+        notifyItemRemoved(position);
+    }
+
     class TaskViewHolder extends RecyclerView.ViewHolder{
         //Tanımla
         TextView contentTV, dateTV;

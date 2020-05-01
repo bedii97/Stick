@@ -13,8 +13,10 @@ import com.example.stick.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -108,6 +110,9 @@ public class NoteDetailActivity extends AppCompatActivity {
         mAdapter.setOnTaskClickListener(new TaskAdapter.OnTaskClickListener() {
             @Override
             public void onTaskClick(int position) {
+                //Recyclerview
+                taskRV.scrollToPosition(position);
+                //Open bottom dialog
                 showBottomSheet(mTaskList.get(position).getId());
             }
 
@@ -123,6 +128,17 @@ public class NoteDetailActivity extends AppCompatActivity {
         taskRV.setHasFixedSize(true);
         taskRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         taskRV.setAdapter(mAdapter);
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                mAdapter.deleteItem(viewHolder.getAdapterPosition());
+            }
+        }).attachToRecyclerView(taskRV);
 
     }
 
