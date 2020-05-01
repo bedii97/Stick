@@ -25,21 +25,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/task_item_task_name_text_view"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/task_item_text_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Selami"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/task_item_task_status_check_box"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/task_item_date_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selami"
-            app:layout_constraintStart_toEndOf="@+id/task_item_task_status_check_box"
-            app:layout_constraintTop_toBottomOf="@+id/task_item_task_name_text_view" />
+            <TextView
+                android:id="@+id/task_item_task_name_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/task_item_task_name"
+                android:textColor="?attr/primaryTextColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/task_item_date_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/task_item_task_date"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/task_item_task_name_text_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

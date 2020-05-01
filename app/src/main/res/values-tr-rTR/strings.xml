@@ -15,7 +15,12 @@
     <string name="create_note_dialog_edit_text_hint">Not Başlığı Girin</string>
 
     <string name="note_item_note_name">Not Adı</string>
-    <string name="note_item_note_date">Tarih Saat</string>
+    <string name="note_item_note_date">Not Tarihi</string>
+
+    <string name="task_item_task_name">Görev Adı</string>
+    <string name="task_item_task_date">Görev Tarihi</string>
+
+    <string name="bottom_dialog_checkbox_text">Tamamlanmış Olarak İşaretle</string>
 
     <string name="no_item_include_text">Henüz bir öğe yok</string>
 

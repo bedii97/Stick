@@ -79,6 +79,7 @@ public class NoteDetailActivity extends AppCompatActivity {
     private void initViews() {
         titleET = findViewById(R.id.activity_note_details_note_title_edit_text);
         taskRV = findViewById(R.id.activity_note_details_recycler_view);
+        taskRV.setNestedScrollingEnabled(false);
     }
 
     private void getNote() {

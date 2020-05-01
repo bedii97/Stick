@@ -15,7 +15,12 @@
     <string name="create_note_dialog_edit_text_hint">Enter the Note Title</string>
 
     <string name="note_item_note_name">Note Name</string>
-    <string name="note_item_note_date">Date Time</string>
+    <string name="note_item_note_date">Note Date</string>
+
+    <string name="task_item_task_name">Task Name</string>
+    <string name="task_item_task_date">Task Date</string>
+
+    <string name="bottom_dialog_checkbox_text">Mark as Completed</string>
 
     <string name="no_item_include_text">No items yet</string>
 

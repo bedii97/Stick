@@ -79,12 +79,6 @@
         <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
     </style>
 
-    <style name="bottomDialogTheme" parent="Theme.Design.BottomSheetDialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-    </style>
-
     <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">?attr/primaryButtonColor</item>
         <item name="android:textColor">@android:color/white</item>
