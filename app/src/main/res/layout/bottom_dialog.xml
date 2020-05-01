@@ -15,44 +15,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/bottom_dialog_check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/bottom_dialog_checkbox_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/bottom_dialog_et"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:paddingBottom="24dp"
-            android:paddingTop="8dp"
             android:autofillHints="@null"
+            android:backgroundTint="@android:color/transparent"
             android:hint="@string/add_note_edit_text_hint"
             android:inputType="text"
+            android:paddingTop="24dp"
+            android:paddingBottom="24dp"
             android:textColor="?attr/primaryTextColor"
-            android:backgroundTint="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bottom_dialog_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottom_dialog_check_box" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/bottom_dialog_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/button_selector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/bottom_dialog_et"
-            app:srcCompat="@drawable/ic_add_note_icon_32dp" />
+            app:srcCompat="@drawable/ic_add_task_icon_32dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

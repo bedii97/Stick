@@ -22,7 +22,7 @@
 
     <string name="bottom_dialog_checkbox_text">Mark as Completed</string>
 
-    <string name="no_item_include_text">No items yet</string>
+    <string name="activity_main_empty_text">No Notes Yet</string>
 
     <string name="menu_dark_theme">Dark Theme</string>
 

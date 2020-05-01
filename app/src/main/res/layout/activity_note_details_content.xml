@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:focusable="true"
+        android:focusable="false"
         android:focusableInTouchMode="true">
 
         <EditText
@@ -24,9 +24,10 @@
             android:background="@android:color/transparent"
             android:fontFamily="sans-serif-medium"
             android:inputType="textMultiLine"
-            android:text="@string/activity_note_details_label"
+            android:hint="@string/activity_note_details_label"
             android:textColor="?attr/primaryTextColor"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:autofillHints="@null"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_note_details_recycler_view"

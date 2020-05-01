@@ -22,7 +22,7 @@
 
     <string name="bottom_dialog_checkbox_text">Tamamlanmış Olarak İşaretle</string>
 
-    <string name="no_item_include_text">Henüz bir öğe yok</string>
+    <string name="activity_main_empty_text">Henüz Not Yok</string>
 
     <string name="menu_dark_theme">Koyu Tema</string>
 

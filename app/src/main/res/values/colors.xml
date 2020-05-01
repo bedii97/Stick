@@ -10,7 +10,7 @@
     <!--LIGHT MODE COLORS-->
 
     <!--Ground Colors (Light)-->
-    <color name="groundColorLight">#FFFFFF</color>
+    <color name="groundColorLight">#F5F5F5</color>
     <color name="cardViewColorLight">#FFFFFF</color>
 
     <!--Text Colors (Light)-->
