@@ -2,12 +2,14 @@ package com.example.stick.Adapter;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,8 +62,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.contentTV.setText(content);
         holder.dateTV.setText(date);
         holder.statusCB.setChecked(status);
+
+        //Change Checked Item Text Color
+        TypedValue typedValue = new TypedValue();
+        mContext.getTheme().resolveAttribute(R.attr.thirdTextColor, typedValue, true);
+        @ColorInt int checkedColor = typedValue.data;
+
         if (status) {
             holder.contentTV.setPaintFlags(holder.contentTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            holder.contentTV.setTextColor(checkedColor);
         }/*else{
             holder.contentTV.setPaintFlags(holder.contentTV.getPaintFlags() & ~ Paint.STRIKE_THRU_TEXT_FLAG);
         }*/

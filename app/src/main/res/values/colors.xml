@@ -14,9 +14,9 @@
     <color name="cardViewColorLight">#FFFFFF</color>
 
     <!--Text Colors (Light)-->
-    <color name="primaryTextColorLight">#D9000000</color>
+    <color name="primaryTextColorLight">#E6000000</color>
     <color name="secondaryTextColorLight">#99000000</color>
-    <color name="thirdTextColorLight">#66000000</color>
+    <color name="thirdTextColorLight">#59000000</color>
 
     <color name="primaryButtonColorLight">#1565C0</color>
     <color name="secondaryButtonColorLight">#000000</color>
@@ -29,9 +29,9 @@
     <color name="cardViewColorDark">#222222</color>
 
     <!--Text Colors (Dark)-->
-    <color name="primaryTextColorDark">#D9FFFFFF</color>
+    <color name="primaryTextColorDark">#E6FFFFFF</color>
     <color name="secondaryTextColorDark">#99FFFFFF</color>
-    <color name="thirdTextColorDark">#66FFFFFF</color>
+    <color name="thirdTextColorDark">#59FFFFFF</color>
 
     <color name="primaryButtonColorDark">#2196F3</color>
     <color name="secondaryButtonColorDark">#FFFFFF</color>
