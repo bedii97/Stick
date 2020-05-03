@@ -24,7 +24,7 @@ public class CreateNoteDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-        return new MaterialAlertDialogBuilder(getActivity(), R.style.createNoteDialogTheme)
+        return new MaterialAlertDialogBuilder(getActivity(), R.style.createDialogTheme)
                 .setView(R.layout.dialog_create_note)
                 .setTitle(R.string.create_note_dialog_title)
                 .setPositiveButton(R.string.create_note_dialog_positive_button, new DialogInterface.OnClickListener() {

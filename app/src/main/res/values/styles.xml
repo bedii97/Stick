@@ -88,7 +88,7 @@
         <item name="android:layout_marginEnd">16dp</item>
     </style>
 
-    <style name="createNoteDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+    <style name="createDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
         <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
         <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>

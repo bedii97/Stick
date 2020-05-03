@@ -1,5 +1,6 @@
 package com.example.stick.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import com.example.stick.Dialog.CreateNoteDialog;
 import com.example.stick.Model.NoteModel;
 import com.example.stick.R;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -116,7 +119,21 @@ public class MainActivity extends AppCompatActivity{
             startActivity(new Intent(this, OssLicensesMenuActivity.class));
             OssLicensesMenuActivity.setActivityTitle(getString(R.string.action_libraries));
         }
-
+        else if (id == R.id.action_sorting) {
+            CharSequence[] options = new CharSequence[2];
+            options[0] = getString(R.string.sorting_dialog_option_by_alphabetic);
+            options[1] = getString(R.string.sorting_dialog_option_by_date);
+            int chosen = 0;
+            new MaterialAlertDialogBuilder(this, R.style.createDialogTheme)
+                    .setTitle(R.string.action_sorting)
+                    .setSingleChoiceItems(options, chosen, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(MainActivity.this, "Seçilen: " + which, Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .show();
+        }
         return super.onOptionsItemSelected(item);
     }
 
