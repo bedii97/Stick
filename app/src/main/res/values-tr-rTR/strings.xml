@@ -5,6 +5,8 @@
     <string name="action_settings">Ayarlar</string>
     <string name="action_libraries">Açık Kaynak Kütüphaneler</string>
 
+    <string name="activity_main_title">Notlar</string>
+
     <string name="activity_note_details_label">Not Adı</string>
     <string name="activity_note_details_action_delete">Notu Sil</string>
     <string name="activity_note_details_action_edit">Notu Düzenle</string>
@@ -16,6 +18,7 @@
 
     <string name="note_item_note_name">Not Adı</string>
     <string name="note_item_note_date">Not Tarihi</string>
+    <string name="note_item_note_task_count">Görev Sayacı</string>
 
     <string name="task_item_task_name">Görev Adı</string>
     <string name="task_item_task_date">Görev Tarihi</string>

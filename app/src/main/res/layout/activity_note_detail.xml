@@ -29,9 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="?attr/primaryButtonColor"
         app:srcCompat="@drawable/ic_add_icon_24dp"
-        app:tint="@android:color/white"
+        android:tint="?attr/colorOnPrimary"
         app:borderWidth="0dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

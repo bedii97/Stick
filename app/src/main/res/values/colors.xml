@@ -10,30 +10,26 @@
     <!--LIGHT MODE COLORS-->
 
     <!--Ground Colors (Light)-->
-    <color name="groundColorLight">#F5F5F5</color>
-    <color name="cardViewColorLight">#FFFFFF</color>
+    <color name="groundColorLight">#FAFAFA</color>
 
     <!--Text Colors (Light)-->
     <color name="primaryTextColorLight">#E6000000</color>
     <color name="secondaryTextColorLight">#99000000</color>
     <color name="thirdTextColorLight">#59000000</color>
 
-    <color name="primaryButtonColorLight">#1565C0</color>
     <color name="secondaryButtonColorLight">#000000</color>
 
 
     <!--DARK MODE COLORS-->
 
     <!--Ground Colors (Dark)-->
-    <color name="groundColorDark">#121212</color>
-    <color name="cardViewColorDark">#222222</color>
+    <color name="groundColorDark">#09131D</color>
 
     <!--Text Colors (Dark)-->
     <color name="primaryTextColorDark">#E6FFFFFF</color>
     <color name="secondaryTextColorDark">#99FFFFFF</color>
     <color name="thirdTextColorDark">#59FFFFFF</color>
 
-    <color name="primaryButtonColorDark">#2196F3</color>
     <color name="secondaryButtonColorDark">#FFFFFF</color>
 
 

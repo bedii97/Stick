@@ -26,6 +26,7 @@ public class CreateNoteDialog extends DialogFragment {
 
         return new MaterialAlertDialogBuilder(getActivity(), R.style.createNoteDialogTheme)
                 .setView(R.layout.dialog_create_note)
+                .setTitle(R.string.create_note_dialog_title)
                 .setPositiveButton(R.string.create_note_dialog_positive_button, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

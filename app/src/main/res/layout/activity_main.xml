@@ -19,7 +19,7 @@
             android:id="@+id/activity_main_collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:title="@string/app_name"
+            app:title="@string/activity_main_title"
             app:expandedTitleMarginEnd="16dp"
             app:expandedTitleMarginStart="16dp"
             app:expandedTitleMarginBottom="16dp"
@@ -45,9 +45,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:text="@string/add_note_list_text"
-        android:textColor="@android:color/white"
-        app:icon="@drawable/ic_add_note_list_icon_24dp"
-        app:iconTint="@android:color/white"
-        app:backgroundTint="?attr/primaryButtonColor" />
+        app:icon="@drawable/ic_add_note_list_icon_24dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

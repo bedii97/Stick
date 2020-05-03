@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/cardColor"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
     app:behavior_hideable="true"
     app:behavior_peekHeight="0dp"
@@ -38,10 +38,10 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="12dp"
             android:background="@drawable/button_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/bottom_dialog_et"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_add_task_icon_32dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

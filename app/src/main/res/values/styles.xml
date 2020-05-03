@@ -1,28 +1,35 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Light Theme -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
         <item name="colorPrimary">#1565C0</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#0D47A1</item>
-        <item name="colorAccent">#1565C0</item>
+
+        <item name="colorSecondary">#1565C0</item><!-- buttons color -->
+        <item name="colorOnSecondary">#FFFFFF</item><!-- icon, text color on button -->
+
+        <item name="colorSurface">#FFFFFF</item><!-- dialog, popup, card color -->
+        <item name="colorOnSurface">#000000</item>
+
+        <item name="android:colorBackground">@color/groundColorLight</item>
+        <item name="colorOnBackground">#000000</item>
+
+        <item name="textAllCaps">false</item>
 
         <item name="android:statusBarColor">@color/groundColorLight</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="appBarTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
         <item name="actionOverflowButtonStyle">@style/OptionButtonTheme</item>
 
-        <item name="android:windowBackground">@color/groundColorLight</item>
         <item name="groundColor">@color/groundColorLight</item>
-        <item name="cardColor">@color/cardViewColorLight</item>
 
         <!--Text Colors (Light)-->
         <item name="primaryTextColor">@color/primaryTextColorLight</item>
         <item name="secondaryTextColor">@color/secondaryTextColorLight</item>
         <item name="thirdTextColor">@color/thirdTextColorLight</item>
 
-        <item name="primaryButtonColor">@color/primaryButtonColorLight</item>
         <item name="secondaryButtonColor">@color/secondaryButtonColorLight</item>
 
     </style>
@@ -32,26 +39,33 @@
     <!-- Dark Theme -->
     <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
 
-        <item name="colorPrimary">#2196F3</item>
-        <item name="colorPrimaryDark">#1565C0</item>
-        <item name="colorAccent">#2196F3</item>
+        <item name="colorPrimary">@color/groundColorDark</item>
+        <item name="colorOnPrimary">#000000</item>
+        <item name="colorPrimaryDark">#42A5F5</item>
+
+        <item name="colorSecondary">#64B5F6</item><!-- buttons color -->
+        <item name="colorOnSecondary">#000000</item><!-- icon, text color on button -->
+
+        <item name="colorSurface">#192F43</item><!-- dialog, popup, card color -->
+        <item name="colorOnSurface">#FFFFFF</item>
+
+        <item name="android:colorBackground">@color/groundColorDark</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+
+        <item name="textAllCaps">false</item>
 
         <item name="android:statusBarColor">@color/groundColorDark</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="appBarTheme">@style/ThemeOverlay.MaterialComponents</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
         <item name="toolbarPopupTheme">@style/ThemeOverlay.MaterialComponents</item>
         <item name="actionOverflowButtonStyle">@style/OptionButtonTheme</item>
 
-        <item name="android:windowBackground">@color/groundColorDark</item>
         <item name="groundColor">@color/groundColorDark</item>
-        <item name="cardColor">@color/cardViewColorDark</item>
 
         <!--Text Colors (Dark)-->
         <item name="primaryTextColor">@color/primaryTextColorDark</item>
         <item name="secondaryTextColor">@color/secondaryTextColorDark</item>
         <item name="thirdTextColor">@color/thirdTextColorDark</item>
 
-        <item name="primaryButtonColor">@color/primaryButtonColorDark</item>
         <item name="secondaryButtonColor">@color/secondaryButtonColorDark</item>
 
     </style>
@@ -59,13 +73,13 @@
     <!-- SplashScreen theme. -->
     <style name="SplashTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splash</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <style name="collapseTextAppearance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textSize">48sp</item>
+        <item name="android:textSize">36sp</item>
         <item name="android:textColor">?attr/primaryTextColor</item>
     </style>
 
@@ -77,20 +91,22 @@
     <style name="createNoteDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
         <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
-        <item name="android:background">?attr/cardColor</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+    </style>
+
+    <style name="MaterialAlertDialog.App.Title.Text" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">@android:color/transparent</item>
-        <item name="android:textColor">?attr/primaryButtonColor</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
     </style>
 
     <style name="Alert.Button.Negative" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">?attr/secondaryTextColor</item>
     </style>
-
-    <!--style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" /-->
 
 </resources>
