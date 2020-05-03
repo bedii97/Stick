@@ -10,6 +10,7 @@ import com.example.stick.DB.DatabaseHelper;
 import com.example.stick.Dialog.CreateNoteDialog;
 import com.example.stick.Model.NoteModel;
 import com.example.stick.R;
+import com.example.stick.Storage.SortingPreference;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -20,19 +21,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ListAdapter;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
 
@@ -73,8 +70,10 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void getDataFromDB() {
+        SortingPreference preference = SortingPreference.getInstance(this);
+        int sortPreference = preference.getNotePreference();
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-        mNoteList = db.getAllNotes();
+        mNoteList = db.getAllNotes(sortPreference);
 
     }
 
@@ -92,29 +91,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void createNoteDialog() {
-        /*CreateNoteDialog dialog = new CreateNoteDialog();
-        dialog.show(getSupportFragmentManager(), "createDialog");*/
-        List<CharSequence> isimler = new ArrayList<>();
-        isimler.add("Şeref");
-        isimler.add("bedii");
-        isimler.add("Halil");
-        CharSequence[] nameler = new CharSequence[3];
-        nameler[0] = getString(R.string.app_name);
-        nameler[1] = "Selami";
-        nameler[2] = "Selami";
-        int secilen = 0;
-        new MaterialAlertDialogBuilder(this)
-                .setTitle("Deneme")
-                .setNeutralButton("Bilmem ne", null)
-                .setPositiveButton("Possitive", null)
-                .setNegativeButton("Negative", null)
-                .setSingleChoiceItems(nameler, secilen, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, "Seçilen: " + which, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .show();
+        CreateNoteDialog dialog = new CreateNoteDialog();
+        dialog.show(getSupportFragmentManager(), "createDialog");
     }
 
     private void openNoteDetailActivity(long id) {
@@ -143,9 +121,33 @@ public class MainActivity extends AppCompatActivity{
         } else if (id == R.id.action_libraries) {
             startActivity(new Intent(this, OssLicensesMenuActivity.class));
             OssLicensesMenuActivity.setActivityTitle(getString(R.string.action_libraries));
+        } else if (id == R.id.action_sorting) {
+            setSortingMenu();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setSortingMenu(){
+        //initialize preference
+        final SortingPreference preference = SortingPreference.getInstance(this);
+        //Prepare Menu Items
+        CharSequence[] options = new CharSequence[2];
+        options[0] = getString(R.string.sorting_dialog_option_by_alphabetic);
+        options[1] = getString(R.string.sorting_dialog_option_by_date);
+        //Get sorting preference for selecting dialog item
+        int chosen = preference.getNotePreference();
+        new MaterialAlertDialogBuilder(this, R.style.createDialogTheme)
+                .setTitle(R.string.action_sorting)
+                .setSingleChoiceItems(options, chosen, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        preference.saveNotePreference(which);
+                        doInBackGround();
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     @Override
