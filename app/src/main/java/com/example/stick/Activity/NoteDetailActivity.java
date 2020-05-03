@@ -1,7 +1,5 @@
 package com.example.stick.Activity;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,10 +9,7 @@ import com.example.stick.Dialog.BottomDialog;
 import com.example.stick.Model.NoteModel;
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
-import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,10 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.util.List;
 
 public class NoteDetailActivity extends AppCompatActivity {
@@ -37,6 +32,8 @@ public class NoteDetailActivity extends AppCompatActivity {
     public static final String NOTEID = "noteid";
     private long mNoteID;
     private NoteModel mNote;
+
+    private boolean isDialogOpened;
 
     //Views
     private EditText titleET;
@@ -103,21 +100,24 @@ public class NoteDetailActivity extends AppCompatActivity {
         titleET.setText(title);
     }
 
-    private void getTasksFromDB(){
+    private void getTasksFromDB() {
         //GetTasks
         DatabaseHelper db = new DatabaseHelper(getApplicationContext());
         mTaskList = db.getTasks(mNoteID);
     }
 
-    private void setTaskData(){
+    private void setTaskData() {
         mAdapter = new TaskAdapter(this, mTaskList);
         mAdapter.setOnTaskClickListener(new TaskAdapter.OnTaskClickListener() {
             @Override
             public void onTaskClick(int position) {
-                //Recyclerview
-                taskRV.scrollToPosition(position);
-                //Open bottom dialog
-                showBottomSheet(mTaskList.get(position).getId());
+                if (!isDialogOpened) { //Show Dialog if not open
+                    //Recyclerview
+                    taskRV.scrollToPosition(position);
+                    //Open bottom dialog
+                    showBottomSheet(mTaskList.get(position).getId());
+                    isDialogOpened = true;
+                }
             }
 
             @Override
@@ -158,6 +158,8 @@ public class NoteDetailActivity extends AppCompatActivity {
             @Override
             public void onDialogClose() {
                 Log.d(TAG, "Dialog Kapandı");
+                //SetDialogDefault
+                isDialogOpened = false;
                 refreshTasks();
             }
         });
@@ -168,7 +170,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         bottomDialog.show(getSupportFragmentManager(), BottomDialog.TAG);
     }
 
-    private void addTask(TaskModel task){
+    private void addTask(TaskModel task) {
         String content = task.getContent();
         int status = task.getStatus();
         long parentID = task.getParentID();
@@ -182,7 +184,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         taskRV.scrollToPosition(0);
     }
 
-    private void refreshTasks(){
+    private void refreshTasks() {
         getTasksFromDB();
         setTaskData();
     }
@@ -192,37 +194,6 @@ public class NoteDetailActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_note_details_menu, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_edit) {
-            return true;
-        } else if (id == R.id.action_delete) {
-            return true;
-        }
-        else if (id == R.id.action_sorting) {
-            CharSequence[] options = new CharSequence[2];
-            options[0] = getString(R.string.sorting_dialog_option_by_alphabetic);
-            options[1] = getString(R.string.sorting_dialog_option_by_date);
-            int chosen = 0;
-            new MaterialAlertDialogBuilder(this, R.style.createDialogTheme)
-                    .setTitle(R.string.action_sorting)
-                    .setSingleChoiceItems(options, chosen, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(NoteDetailActivity.this, "Seçilen: " + which, Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .show();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

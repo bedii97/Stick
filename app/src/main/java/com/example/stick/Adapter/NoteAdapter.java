@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.stick.DB.DatabaseHelper;
 import com.example.stick.Model.NoteModel;
 import com.example.stick.R;
 
@@ -45,10 +46,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         NoteModel currentNote = mNoteModelList.get(position);
         //Binding
         long id = currentNote.getId();
+        int taskCount = new DatabaseHelper(mContext).getTaskCount(id);
         String title = currentNote.getTitle();
         String color = currentNote.getColor();
-        holder.tv1.setText(title);
-        holder.tv2.setText(color);
+        holder.noteNameTV.setText(title);
+        holder.noteDateTV.setText(color);
+        holder.noteCountTV.setText(Integer.toString(taskCount));
     }
 
     @Override
@@ -59,14 +62,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
     class NoteViewHolder extends RecyclerView.ViewHolder {
 
         //Tanımlama
-        TextView  tv1, tv2;
+        TextView  noteNameTV, noteDateTV, noteCountTV;
 
         public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             //init
-            tv1 = itemView.findViewById(R.id.note_item_note_name_text_view);
-            tv2 = itemView.findViewById(R.id.note_item_date_time_text_view);
-
+            noteNameTV = itemView.findViewById(R.id.note_item_note_name_text_view);
+            noteDateTV = itemView.findViewById(R.id.note_item_date_time_text_view);
+            noteCountTV = itemView.findViewById(R.id.note_item_task_count_text_view);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

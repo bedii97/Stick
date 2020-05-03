@@ -88,6 +88,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public void deleteItem(int position){
+        long taskID = mTaskList.get(position).getId();
+        new DatabaseHelper(mContext).deleteTask(taskID);
         mTaskList.remove(position);
         notifyItemRemoved(position);
     }

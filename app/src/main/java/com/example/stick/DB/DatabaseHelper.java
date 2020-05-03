@@ -45,6 +45,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DBConstants.T2_QUERY);
     }
 
+    //Note Operations
+
     public long insertNote(String title, String color) {
         long dateMilis = Calendar.getInstance().getTimeInMillis();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -90,20 +92,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return notes;
     }
 
-    public TaskModel getTask(long taskID){
-        String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_ID + " = " + taskID;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-        cursor.moveToFirst();
-        TaskModel task = new TaskModel(
-                cursor.getInt(cursor.getColumnIndex(DBConstants.T2_ID)),
-                cursor.getString(cursor.getColumnIndex(DBConstants.T2_CONTENT)),
-                cursor.getInt(cursor.getColumnIndex(DBConstants.T2_STATUS)),
-                cursor.getLong(cursor.getColumnIndex(DBConstants.T2_DATE)),
-                cursor.getLong(cursor.getColumnIndex(DBConstants.T2_PARENTID)));
+    public boolean updateTitle(long id, String title){
+        String clause = "id="+id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues value = new ContentValues();
+        value.put(DBConstants.T1_TITLE, title);
+        int affected = db.update(DBConstants.T1_NAME, value, clause, null);
         db.close();
-        return task;
+        return affected > 0;
     }
+
+    //Task Operations
 
     public boolean updateTaskContent(long id, String content){
         String clause = DBConstants.T2_ID+"="+id;
@@ -145,6 +144,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return tasks;
     }
 
+    public TaskModel getTask(long taskID){
+        String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_ID + " = " + taskID;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+        TaskModel task = new TaskModel(
+                cursor.getInt(cursor.getColumnIndex(DBConstants.T2_ID)),
+                cursor.getString(cursor.getColumnIndex(DBConstants.T2_CONTENT)),
+                cursor.getInt(cursor.getColumnIndex(DBConstants.T2_STATUS)),
+                cursor.getLong(cursor.getColumnIndex(DBConstants.T2_DATE)),
+                cursor.getLong(cursor.getColumnIndex(DBConstants.T2_PARENTID)));
+        db.close();
+        return task;
+    }
+
     public long insertTask(String content, int status, long parentID){
         long dateMilis = Calendar.getInstance().getTimeInMillis();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -158,14 +172,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public boolean updateTitle(long id, String title){
-        String clause = "id="+id;
+    public int deleteTask(long taskID){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues value = new ContentValues();
-        value.put(DBConstants.T1_TITLE, title);
-        int affected = db.update(DBConstants.T1_NAME, value, clause, null);
+        String clause = DBConstants.T2_ID + "=?";
+        return db.delete(DBConstants.T2_NAME, clause, new String[] {Long.toString(taskID)});
+    }
+
+    public int getTaskCount(long noteID){
+        String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_PARENTID + " = " + noteID;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        int count = cursor.getCount();
         db.close();
-        return affected > 0;
+        return count;
     }
 
     private int reverseIntBool(int i){
