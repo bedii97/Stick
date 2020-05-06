@@ -132,9 +132,10 @@ public class MainActivity extends AppCompatActivity {
         //initialize preference
         final SortingPreference preference = SortingPreference.getInstance(this);
         //Prepare Menu Items
-        CharSequence[] options = new CharSequence[2];
+        CharSequence[] options = new CharSequence[3];
         options[0] = getString(R.string.sorting_dialog_option_by_alphabetic);
-        options[1] = getString(R.string.sorting_dialog_option_by_date);
+        options[1] = getString(R.string.sorting_dialog_option_by_date_latest);
+        options[2] = getString(R.string.sorting_dialog_option_by_date_oldest);
         //Get sorting preference for selecting dialog item
         int chosen = preference.getNotePreference();
         new MaterialAlertDialogBuilder(this, R.style.createDialogTheme)

@@ -6,7 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="action_libraries">Open Source Libraries</string>
     <string name="action_sorting">Sort By</string>
-    <string name="sorting_dialog_option_by_date">By Date</string>
+    <string name="sorting_dialog_option_by_date_latest">By Date(Latest)</string>
+    <string name="sorting_dialog_option_by_date_oldest">By Date(Oldest)</string>
     <string name="sorting_dialog_option_by_alphabetic">Alphabetic</string>
 
     <string name="activity_main_title">Notes</string>

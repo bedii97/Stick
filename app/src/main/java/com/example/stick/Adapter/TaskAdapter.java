@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stick.DB.DatabaseHelper;
+import com.example.stick.Helper.DateTimeHelper;
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.checkbox.MaterialCheckBox;
@@ -54,10 +55,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         //binding
         TaskModel currentTask = mTaskList.get(position);
         String content = currentTask.getContent();
-        long dateInMilis = currentTask.getDate();
-        Calendar c = Calendar.getInstance();
-        c.setTimeInMillis(dateInMilis);
-        String date = c.getTime().toString();
+        long timeInMillis = currentTask.getDate();
+        String date = new DateTimeHelper().getDateTime(timeInMillis);
         boolean status = currentTask.getStatus() != 0;
         holder.contentTV.setText(content);
         holder.dateTV.setText(date);

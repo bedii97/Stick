@@ -76,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<NoteModel> getAllNotes(int sort) {
         List<NoteModel> notes = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + DBConstants.T1_NAME;
-        selectQuery += sort == 0 ? " ORDER BY " + DBConstants.T1_TITLE + " COLLATE NOCASE ASC" : " ORDER BY " + DBConstants.T1_ID + " COLLATE NOCASE DESC";
+        selectQuery += sort == 0 ? " ORDER BY " + DBConstants.T1_TITLE + " COLLATE NOCASE ASC" : (sort == 1) ?  " ORDER BY " + DBConstants.T1_ID + " COLLATE NOCASE DESC" : " ORDER BY " + DBConstants.T1_ID + " COLLATE NOCASE ASC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor.moveToNext()){
@@ -128,7 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public List<TaskModel> getTasks(long noteID, int sort){
         //String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_PARENTID + " = " + noteID + " ORDER BY " + DBConstants.T2_ID + " DESC";
         String selectQuery = "SELECT * FROM " + DBConstants.T2_NAME + " WHERE " + DBConstants.T2_PARENTID + " = " + noteID;
-        selectQuery += sort == 0 ? " ORDER BY " + DBConstants.T2_CONTENT + " COLLATE NOCASE ASC" : " ORDER BY " + DBConstants.T2_ID + " COLLATE NOCASE DESC";
+        selectQuery += sort == 0 ? " ORDER BY " + DBConstants.T2_CONTENT + " COLLATE NOCASE ASC" : (sort == 1) ? " ORDER BY " + DBConstants.T2_ID + " COLLATE NOCASE DESC" : " ORDER BY " + DBConstants.T2_ID + " COLLATE NOCASE ASC";
         List<TaskModel> tasks = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

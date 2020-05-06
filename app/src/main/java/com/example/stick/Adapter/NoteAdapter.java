@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.stick.DB.DatabaseHelper;
+import com.example.stick.Helper.DateTimeHelper;
 import com.example.stick.Model.NoteModel;
 import com.example.stick.R;
 
@@ -48,9 +49,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         long id = currentNote.getId();
         int taskCount = new DatabaseHelper(mContext).getTaskCount(id);
         String title = currentNote.getTitle();
-        String color = currentNote.getColor();
+        long timeInMillis = currentNote.getDate();
+        String date = new DateTimeHelper().getDateTime(timeInMillis);
         holder.noteNameTV.setText(title);
-        holder.noteDateTV.setText(color);
+        holder.noteDateTV.setText(date);
         holder.noteCountTV.setText(Integer.toString(taskCount));
     }
 

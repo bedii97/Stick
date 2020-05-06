@@ -11,7 +11,8 @@ public class SortingPreference {
 
     //Const
     public static final int ALPHABETIC = 0;
-    public static final int BY_DATE = 1;
+    public static final int BY_DATE_LATEST = 1;
+    public static final int BY_DATE_OLDEST= 2;
 
     private SortingPreference(Context ctx){
         mContext = ctx;
