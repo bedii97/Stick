@@ -103,6 +103,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return affected > 0;
     }
 
+    public int deleteNote(long noteID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String clause = DBConstants.T1_ID + "=?";
+        return db.delete(DBConstants.T1_NAME, clause, new String[] {Long.toString(noteID)});
+    }
+
     //Task Operations
 
     public boolean updateTaskContent(long id, String content){

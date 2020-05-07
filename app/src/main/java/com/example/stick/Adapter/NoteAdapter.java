@@ -52,7 +52,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         long timeInMillis = currentNote.getDate();
         String date = new DateTimeHelper().getDateTime(timeInMillis);
         holder.noteNameTV.setText(title);
-        holder.noteDateTV.setText(date);
+        holder.noteDateTV.setText(date);    
         holder.noteCountTV.setText(Integer.toString(taskCount));
     }
 

@@ -11,6 +11,7 @@ import com.example.stick.Dialog.CreateNoteDialog;
 import com.example.stick.Model.NoteModel;
 import com.example.stick.R;
 import com.example.stick.Storage.SortingPreference;
+import com.example.stick.Storage.ThemePreference;
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setAppTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
@@ -63,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setAppTheme() {
+        ThemePreference preference = ThemePreference.getInstance(this);
+        if (preference.isDarkTheme()) setTheme(R.style.AppThemeDark);
+        else setTheme(R.style.AppTheme);
     }
 
     private void initViews() {
@@ -105,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_main_menu, menu);
+        ThemePreference preference = ThemePreference.getInstance(this);
+        boolean isDarkTheme = preference.isDarkTheme();
+        menu.findItem(R.id.action_theme).setChecked(isDarkTheme);
         return true;
     }
 
@@ -117,7 +128,10 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_theme) {
-            return true;
+            ThemePreference preference = ThemePreference.getInstance(this);
+            preference.quickSaveThemePreference();
+            //item.setChecked(!item.isChecked());
+            startActivity(new Intent(this, MainActivity.class));
         } else if (id == R.id.action_libraries) {
             startActivity(new Intent(this, OssLicensesMenuActivity.class));
             OssLicensesMenuActivity.setActivityTitle(getString(R.string.action_libraries));
@@ -128,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setSortingMenu(){
+    private void setSortingMenu() {
         //initialize preference
         final SortingPreference preference = SortingPreference.getInstance(this);
         //Prepare Menu Items

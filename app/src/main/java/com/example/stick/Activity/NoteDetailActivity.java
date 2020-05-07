@@ -11,6 +11,7 @@ import com.example.stick.Model.NoteModel;
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.example.stick.Storage.SortingPreference;
+import com.example.stick.Storage.ThemePreference;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -48,6 +49,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setAppTheme();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_detail);
         //Init Views
@@ -196,6 +198,12 @@ public class NoteDetailActivity extends AppCompatActivity {
         setTaskData();
     }
 
+    private void setAppTheme() {
+        ThemePreference preference = ThemePreference.getInstance(this);
+        if (preference.isDarkTheme()) setTheme(R.style.AppThemeDark);
+        else setTheme(R.style.AppTheme);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -215,12 +223,18 @@ public class NoteDetailActivity extends AppCompatActivity {
             setSortingMenu();
         }
         else if (id == R.id.action_delete) {
+            deleteNote();
             return true;
         }
         /*else if (id == R.id.action_edit) {
             return true;
         }*/
         return super.onOptionsItemSelected(item);
+    }
+
+    private void deleteNote() {
+        new DatabaseHelper(this).deleteNote(mNoteID);
+        onBackPressed();
     }
 
     private void setSortingMenu(){
