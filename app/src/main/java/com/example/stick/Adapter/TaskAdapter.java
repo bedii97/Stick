@@ -70,6 +70,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         if (status) {
             holder.contentTV.setPaintFlags(holder.contentTV.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             holder.contentTV.setTextColor(checkedColor);
+            holder.dateTV.setTextColor(checkedColor);
         }/*else{
             holder.contentTV.setPaintFlags(holder.contentTV.getPaintFlags() & ~ Paint.STRIKE_THRU_TEXT_FLAG);
         }*/

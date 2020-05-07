@@ -25,7 +25,6 @@
             android:text="@string/note_item_note_name"
             android:textColor="?attr/primaryTextColor"
             android:textSize="16sp"
-            android:transitionName="noteItemTransition"
             app:layout_constraintEnd_toStartOf="@+id/note_item_task_count_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="@string/note_item_note_date"
-            android:textColor="?attr/thirdTextColor"
             android:textSize="12sp"
             android:maxLines="1"
             android:ellipsize="end"
@@ -49,6 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/note_item_note_task_count"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="?attr/primaryTextColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

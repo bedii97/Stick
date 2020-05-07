@@ -66,6 +66,7 @@ public class NoteDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_icon_24dp);
+        toolbar.setNavigationContentDescription(R.string.activity_note_details_back_button);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,14 +211,15 @@ public class NoteDetailActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_edit) {
-            return true;
-        } else if (id == R.id.action_delete) {
-            return true;
-        }
-        else if (id == R.id.action_sorting) {
+        if (id == R.id.action_sorting) {
             setSortingMenu();
         }
+        else if (id == R.id.action_delete) {
+            return true;
+        }
+        /*else if (id == R.id.action_edit) {
+            return true;
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

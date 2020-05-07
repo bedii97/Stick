@@ -39,5 +39,7 @@
     <string name="add_note_edit_text_hint">Add Note</string>
 
     <!--Content Descriptions-->
+    <string name="activity_note_details_back_button">Back</string>
+    <string name="activity_note_details_add_task_button">Add Task</string>
 
 </resources>

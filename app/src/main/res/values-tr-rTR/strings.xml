@@ -39,5 +39,8 @@
     <string name="add_note_edit_text_hint">Not Ekle</string>
 
     <!--Content Descriptions-->
+    <string name="activity_note_details_back_button">Geri Gel</string>
+    <string name="activity_note_details_add_task_button">Görev Ekle</string>
+
 
 </resources>
