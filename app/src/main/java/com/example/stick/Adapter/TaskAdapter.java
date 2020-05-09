@@ -2,6 +2,7 @@ package com.example.stick.Adapter;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,23 +19,27 @@ import com.example.stick.Helper.DateTimeHelper;
 import com.example.stick.Model.TaskModel;
 import com.example.stick.R;
 import com.google.android.material.checkbox.MaterialCheckBox;
+import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Calendar;
 import java.util.List;
 
-public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder>{
+public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private Context mContext;
     private List<TaskModel> mTaskList;
     private OnTaskClickListener mListener;
+    //Removed
+    private int mRemovedPosition = -1;
+    private TaskModel mRemovedTask;
     private static final String TAG = "TaskAdapter";
 
-    public interface OnTaskClickListener{
+    public interface OnTaskClickListener {
         void onTaskClick(int position);
+
         void onCheckClick(int position);
     }
 
-    public void setOnTaskClickListener(OnTaskClickListener listener){
+    public void setOnTaskClickListener(OnTaskClickListener listener) {
         mListener = listener;
     }
 
@@ -87,14 +92,45 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return mTaskList.size();
     }
 
-    public void deleteItem(int position){
-        long taskID = mTaskList.get(position).getId();
-        new DatabaseHelper(mContext).deleteTask(taskID);
+    public void hideItem(int position, RecyclerView.ViewHolder holder) {
+        mRemovedPosition = position;
+        mRemovedTask = mTaskList.get(position);
         mTaskList.remove(position);
         notifyItemRemoved(position);
+        Snackbar.make(holder.itemView, mRemovedTask.getContent() + " Deleted", Snackbar.LENGTH_LONG)
+                .setAction("Undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        undoDelete();
+                    }
+                })
+                .addCallback(new Snackbar.Callback() {
+                    @Override
+                    public void onDismissed(Snackbar transientBottomBar, int event) {
+                        super.onDismissed(transientBottomBar, event);
+                        if(event != Snackbar.Callback.DISMISS_EVENT_SWIPE){ //TODO burada kaldım
+                            deleteItem();
+                        }
+                    }
+                }).show();
+
     }
 
-    class TaskViewHolder extends RecyclerView.ViewHolder{
+    private void deleteItem() {
+        if(mRemovedPosition != -1){
+            long taskID = mRemovedTask.getId();
+            new DatabaseHelper(mContext).deleteTask(taskID);
+            Log.d(TAG, "Silinen: " + mRemovedTask.getContent());
+        }
+    }
+
+    private void undoDelete() {
+        mTaskList.add(mRemovedPosition, mRemovedTask);
+        notifyItemInserted(mRemovedPosition);
+        mRemovedPosition = -1;
+    }
+
+    class TaskViewHolder extends RecyclerView.ViewHolder {
         //Tanımla
         TextView contentTV, dateTV;
         MaterialCheckBox statusCB;
@@ -110,9 +146,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mListener != null){
+                    if (mListener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             mListener.onTaskClick(position);
                         }
                     }

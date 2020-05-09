@@ -14,6 +14,7 @@ import com.example.stick.Storage.SortingPreference;
 import com.example.stick.Storage.ThemePreference;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -149,7 +150,7 @@ public class NoteDetailActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                mAdapter.deleteItem(viewHolder.getAdapterPosition());
+                mAdapter.hideItem(viewHolder.getAdapterPosition(), viewHolder);
             }
         }).attachToRecyclerView(taskRV);
 

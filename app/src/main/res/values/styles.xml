@@ -35,7 +35,6 @@
     </style>
 
 
-
     <!-- Dark Theme -->
     <style name="AppThemeDark" parent="Theme.MaterialComponents.NoActionBar">
 
@@ -91,7 +90,8 @@
     <style name="createDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
         <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
-        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text
+        </item>
     </style>
 
     <style name="MaterialAlertDialog.App.Title.Text" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
@@ -108,5 +108,14 @@
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">?attr/secondaryTextColor</item>
     </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
