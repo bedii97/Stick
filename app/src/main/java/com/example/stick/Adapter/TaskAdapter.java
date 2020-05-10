@@ -21,7 +21,10 @@ import com.example.stick.R;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
@@ -29,8 +32,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     private List<TaskModel> mTaskList;
     private OnTaskClickListener mListener;
     //Removed
-    private int mRemovedPosition = -1;
-    private TaskModel mRemovedTask;
+    //private List<TaskModel> mRemovedTasks = new ArrayList<>();
+    private HashMap<Integer, TaskModel> mRemovedTasks = new HashMap<Integer, TaskModel>();
     private static final String TAG = "TaskAdapter";
 
     public interface OnTaskClickListener {
@@ -92,42 +95,55 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return mTaskList.size();
     }
 
-    public void hideItem(int position, RecyclerView.ViewHolder holder) {
-        mRemovedPosition = position;
-        mRemovedTask = mTaskList.get(position);
+    public void hideItem(final int position, RecyclerView.ViewHolder holder) {
+        //Position sürekli 0. index olarak geldiği için, swipe tan sonra silinmesi gereken item var mı kontrol ediyorum.
+        if (mRemovedTasks.containsKey(position)) {
+            deleteSingleItem(position); //Varsa itemi sql den siliyorum
+            mRemovedTasks.remove(position); //Silinmesi gerekenler listesindende siliyorum
+        }
+        mRemovedTasks.put(position, mTaskList.get(position));
         mTaskList.remove(position);
         notifyItemRemoved(position);
-        Snackbar.make(holder.itemView, mRemovedTask.getContent() + " Deleted", Snackbar.LENGTH_LONG)
+        Snackbar.make(holder.itemView, mRemovedTasks.get(position).getContent() + " Deleted", Snackbar.LENGTH_LONG)
                 .setAction("Undo", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        undoDelete();
+                        undoDelete(position);
                     }
                 })
                 .addCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar transientBottomBar, int event) {
                         super.onDismissed(transientBottomBar, event);
-                        if(event != Snackbar.Callback.DISMISS_EVENT_SWIPE){ //TODO burada kaldım
-                            deleteItem();
-                        }
                     }
                 }).show();
+        Log.d(TAG, "hideItem: Task Hided");
 
     }
 
-    private void deleteItem() {
-        if(mRemovedPosition != -1){
-            long taskID = mRemovedTask.getId();
+    //Kaydırma işleminde silinmesi gereken item varsa bu metodla siliniyor
+    private void deleteSingleItem(int position) {
+        TaskModel myTask = mRemovedTasks.get(position);
+        long taskID = myTask.getId();
+        new DatabaseHelper(mContext).deleteTask(taskID);
+        Log.d(TAG, "deleteSingleItem: Task Deleted!");
+    }
+
+    //Sadece bir item silmişse deleteSingleItem metodu çalışmayacağı için ve son itemide silmeyeceği için from exitta bu metod çalışıyor ve siliyor
+    public void deleteItem() {
+        for (Map.Entry<Integer, TaskModel> task : mRemovedTasks.entrySet()) {
+            TaskModel myTask = task.getValue();
+            long taskID = myTask.getId();
             new DatabaseHelper(mContext).deleteTask(taskID);
-            Log.d(TAG, "Silinen: " + mRemovedTask.getContent());
+            Log.d(TAG, "deleteItem: Task Deleted!");
         }
     }
 
-    private void undoDelete() {
-        mTaskList.add(mRemovedPosition, mRemovedTask);
-        notifyItemInserted(mRemovedPosition);
-        mRemovedPosition = -1;
+    private void undoDelete(int position) {
+        mTaskList.add(position, mRemovedTasks.get(position));
+        mRemovedTasks.remove(position);
+        notifyItemInserted(position);
+        Log.d(TAG, "undoDelete: Undo Task");
     }
 
     class TaskViewHolder extends RecyclerView.ViewHolder {

@@ -264,6 +264,7 @@ public class NoteDetailActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //Update Note Title
         String title = mNote.getTitle().trim();
         String inputTitle = titleET.getText().toString().trim();
         if (!inputTitle.equals(title)) {
@@ -272,5 +273,8 @@ public class NoteDetailActivity extends AppCompatActivity {
             db.updateTitle(mNoteID, inputTitle);
             Log.d(TAG, "onDestroy: Updated");
         }
+
+        //Delete Removed Tasks
+        mAdapter.deleteItem();
     }
 }
