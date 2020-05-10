@@ -104,13 +104,30 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         mRemovedTasks.put(position, mTaskList.get(position));
         mTaskList.remove(position);
         notifyItemRemoved(position);
-        Snackbar.make(holder.itemView, mRemovedTasks.get(position).getContent() + " Deleted", Snackbar.LENGTH_LONG)
-                .setAction("Undo", new View.OnClickListener() {
+
+        //SnackBar Colors
+        TypedValue typedValue = new TypedValue();
+        mContext.getTheme().resolveAttribute(R.attr.colorSurface, typedValue, true);
+        @ColorInt int backgroundColor = typedValue.data;
+
+        TypedValue typedValue1 = new TypedValue();
+        mContext.getTheme().resolveAttribute(R.attr.colorSecondary, typedValue1, true);
+        @ColorInt int actionTextColor = typedValue1.data;
+
+        TypedValue typedValue2 = new TypedValue();
+        mContext.getTheme().resolveAttribute(R.attr.primaryTextColor, typedValue2, true);
+        @ColorInt int textColor = typedValue2.data;
+
+        Snackbar.make(holder.itemView, R.string.activity_note_details_snack_bar_deleted, Snackbar.LENGTH_LONG)
+                .setBackgroundTint(backgroundColor)
+                .setAction(R.string.activity_note_details_snack_bar_undo, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         undoDelete(position);
                     }
                 })
+                .setActionTextColor(actionTextColor)
+                .setTextColor(textColor)
                 .addCallback(new Snackbar.Callback() {
                     @Override
                     public void onDismissed(Snackbar transientBottomBar, int event) {
