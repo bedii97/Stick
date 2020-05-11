@@ -15,6 +15,8 @@
     <string name="activity_note_details_label">Not Adı</string>
     <string name="activity_note_details_action_delete">Notu Sil</string>
     <string name="activity_note_details_action_edit">Notu Düzenle</string>
+    <string name="activity_note_details_snack_bar_deleted">Görev Silindi</string>
+    <string name="activity_note_details_snack_bar_undo">GERİ AL</string>
 
     <string name="create_note_dialog_title">Yeni Not</string>
     <string name="create_note_dialog_positive_button">Kaydet</string>
