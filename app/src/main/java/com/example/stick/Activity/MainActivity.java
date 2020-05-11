@@ -128,10 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_theme) {
-            ThemePreference preference = ThemePreference.getInstance(this);
-            preference.quickSaveThemePreference();
-            //item.setChecked(!item.isChecked());
-            startActivity(new Intent(this, MainActivity.class));
+            setThemePreference();
         } else if (id == R.id.action_libraries) {
             startActivity(new Intent(this, OssLicensesMenuActivity.class));
             OssLicensesMenuActivity.setActivityTitle(getString(R.string.action_libraries));
@@ -140,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setThemePreference() {
+        ThemePreference preference = ThemePreference.getInstance(this);
+        preference.quickSaveThemePreference();
+        //item.setChecked(!item.isChecked());
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        overridePendingTransition(R.anim.anim_zoom_enter, R.anim.anim_zoom_exit);
     }
 
     private void setSortingMenu() {
