@@ -1,5 +1,7 @@
 package com.example.stick.Activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -137,6 +139,15 @@ public class NoteDetailActivity extends AppCompatActivity {
                 int status = mTaskList.get(position).getStatus();
                 db.updateTaskStatus(id, status);
                 refreshTasks();
+            }
+
+            @Override
+            public void onLongClick(int position) {
+                String copyData = mTaskList.get(position).getContent();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText(copyData, copyData);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(NoteDetailActivity.this, getResources().getText(R.string.activity_note_details_coppied_task), Toast.LENGTH_SHORT).show();
             }
         });
         taskRV.setHasFixedSize(true);

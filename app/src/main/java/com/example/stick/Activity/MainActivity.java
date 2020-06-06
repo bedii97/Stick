@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -179,13 +180,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doInBackGround() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getDataFromDB();
-                setNotes();
-            }
-        }, 500);
+        try {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getDataFromDB();
+                    setNotes();
+                }
+            }, 500);
+        } catch (NullPointerException e) {
+            Log.d(TAG, "doInBackGround: " + e.getLocalizedMessage());
+        }
     }
 
     @Override

@@ -17,6 +17,7 @@
     <string name="activity_note_details_action_edit">Edit Note</string>
     <string name="activity_note_details_snack_bar_deleted">Task Deleted</string>
     <string name="activity_note_details_snack_bar_undo">UNDO</string>
+    <string name="activity_note_details_coppied_task">Copied</string>
 
     <string name="create_note_dialog_title">New Note</string>
     <string name="create_note_dialog_positive_button">Save</string>

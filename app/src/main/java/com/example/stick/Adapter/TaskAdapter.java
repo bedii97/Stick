@@ -40,6 +40,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         void onTaskClick(int position);
 
         void onCheckClick(int position);
+
+        void onLongClick(int position);
     }
 
     public void setOnTaskClickListener(OnTaskClickListener listener) {
@@ -185,6 +187,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                             mListener.onTaskClick(position);
                         }
                     }
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onLongClick(position);
+                        }
+                    }
+                    return true;
                 }
             });
         }
